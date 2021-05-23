@@ -17,6 +17,6 @@ class Select_Sort(object):
 
 if __name__=='__main__':
     arr=[int(x) for x  in input().strip().split(' ')]
-    insert_sort=Select_Sort()
-    insert_sort.sort(arr)
+    select_sort=Select_Sort()
+    select_sort.sort(arr)
     print(arr)

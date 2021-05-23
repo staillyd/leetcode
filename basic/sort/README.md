@@ -78,3 +78,57 @@ for i in range(len(arr)):
     arr[i],arr[min_index]=arr[min_index],arr[i]
 ```
 
+## [归并排序](merge_sort.py)
+- $S(n)=O(n)$
+- $T(n)=O(n^2)$
+- 对于规模为 n 的问题,一共要进行 log(n) 次的切分,每一层的合并复杂度都是 O(n),所以整体时间复杂度为 O(nlogn)
+- 合并 n 个元素需要分配一个大小为 n 的额外数组，所以空间复杂度为 O(n)
+- 归并排序是稳定的排序算法
+- 注意边界条件
+```python
+def merge(self,arr,l,m,r):
+    '''合并两顺序数组
+    
+    @param:
+        arr     list    输入数组
+        l       int     左边界开始索引
+        m       int     右边界开始索引
+        r       int     右边界结束索引+1
+    @Note:
+        复制两子数组->合并两数组到原数组对应位置
+    '''
+    # 复制子数组
+    a=[x for x in arr[l:m]]
+    b=[x for x in arr[m:r]]
+    # 合并两顺序数组
+    a_idx,b_idx,arr_idx=0,0,l
+    while True:
+        if a[a_idx]<b[b_idx]:
+            arr[arr_idx]=a[a_idx]
+            a_idx+=1
+            arr_idx+=1
+        else:
+            arr[arr_idx]=b[b_idx]
+            b_idx+=1
+            arr_idx+=1
+        if a_idx==len(a) or b_idx==len(b):#注意边界条件
+            break
+    
+    if a_idx!=len(a):
+        arr[arr_idx:r]=a[a_idx:]
+    if b_idx!=len(b):
+        arr[arr_idx:r]=b[b_idx:]
+
+def sort(self,arr,l,r):
+    '''
+    
+    @Note:
+        左排序->右排序->合并
+    '''
+    if l>=r:#递归终止条件
+        return
+    m=(l+r)//2
+    self.sort(arr,l,m)
+    self.sort(arr,m+1,r)
+    self.merge(arr,l,m+1,r+1)
+```
