@@ -13,6 +13,8 @@ class Insert_Sort(object):
             for j in range(i)[::-1]:#i-1->0
                 if arr[j]>num:
                     arr[j+1]=arr[j]#索引j->j+1,j+1是当前所需要赋值的索引
+                    if j==0:#!!!注意边界条件!!!
+                        arr[j]=num
                 else:
                     arr[j+1]=num
                     break

@@ -43,19 +43,54 @@ for i in range(len(arr)):
   3. 给定的数组杂乱无章.在这种情况下,平均时间复杂度$O(n^2)$
 - 稳定的排序算法(两个相等的数，在排序过后，相对位置保持不变)
 ```python
-'''
-        
-@Note:将第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列。
-    从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置
-'''
-for i in range(1,len(arr)):
-    num=arr[i]
-    for j in range(i)[::-1]:#i-1->0
-        if arr[j]>num:
-            arr[j+1]=arr[j]#索引j->j+1,j+1是当前所需要赋值的索引
-        else:
-            arr[j+1]=num
+def sort(self,arr):
+    '''
+    
+    @Note:将第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列。
+        从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置
+    '''
+    for i in range(1,len(arr)):
+        num=arr[i]
+        for j in range(i)[::-1]:#i-1->0
+            if arr[j]>num:
+                arr[j+1]=arr[j]#索引j->j+1,j+1是当前所需要赋值的索引
+                if j==0:#!!!注意边界条件!!!
+                    arr[j]=num
+            else:
+                arr[j+1]=num
+                break
+```
+
+## [希尔排序](shell_sort.py)
+- 简单插入排序的一种改进版本
+- $S(n)=O(1)$
+- n小,$T(n)=O(n^2)$
+- n大,$T(n)=O(nlog(n))$
+
+```python
+def sort(self,arr):
+    '''
+    
+    @Note:
+        间隔从l/2减小到1的过程中，将处在相同间隔的元素提取出来单独进行插入排序
+    '''
+    gap=len(arr)//2
+    while True:
+        for i in range(gap):#当前共gap组子数组
+            # 对每个子数组,带gap的插入排序
+            for j in range(i+gap,len(arr),gap):
+                num=arr[j]
+                for k in range(i,j,gap)[::-1]:#在j之前gap开始每隔gap来一次
+                    if arr[k]>num:
+                        arr[k+gap]=arr[k]
+                        if k==i:#!!!注意边界条件!!!
+                            arr[k]=num
+                    else:
+                        arr[k+gap]=num
+                        break
+        if gap==1:
             break
+        gap=gap//2
 ```
 
 ## [选择排序法](select_sort.py)
