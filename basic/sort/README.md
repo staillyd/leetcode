@@ -132,3 +132,45 @@ def sort(self,arr,l,r):
     self.sort(arr,m+1,r)
     self.merge(arr,l,m+1,r+1)
 ```
+
+## [快速排序](quick_sort.py)
+- $S(n)=O(1)*O(log(n))=O(log(n))$
+- $T(n)=O(nlog(n))$
+- 对于规模为 n 的问题,一共要进行 log(n) 次的切分,每一层的复杂度都是 O(n),所以整体时间复杂度为 O(nlogn)
+  - 但是，如果每次在选择基准值的时候，都不幸地选择了子数组里的最大或最小值。即每次把把数组分成了两个更小长度的数组，其中一个长度为 1，另一个的长度是子数组的长度减 1。这样的算法复杂度变成 O(n²)。
+- 快速排序法的优化
+  - 最理想的基准点是：被基准点分开的两个子数组中，数据的数量差不多。
+  - 三数取中法:从区间的首、尾、中间，分别取出一个数，然后对比大小，取这 3 个数的中间值作为分区点
+```python
+'''递归,注意终止条件
+        
+@Note:
+    1.定枢轴
+    2.循环(!!!内部每条都要加在递归条件内的条件!!!)
+        1.向左查找<枢轴的索引
+        2.替换左索引元素,左索引右移
+        3.向右查找>枢轴的索引
+        4.替换右索引元素,右索引左移
+    3.左索引元素=枢轴
+    4.左半、右半快排
+'''
+if l>=r:#递归终止条件
+    return
+num=arr[l]
+start=l
+end=r
+while start<end:#!!!内部每条都要加在递归条件内的条件!!!
+    while start<end and arr[end]>=num:#向左查找<枢轴的索引
+        end-=1
+    if start<end:
+        arr[start]=arr[end]
+        start+=1
+    while start<end and arr[start]<=num:#向右查找>枢轴的索引
+        start+=1
+    if start<end:
+        arr[end]=arr[start]
+        end-=1
+arr[start]=num
+self.sort(arr,l,start-1)
+self.sort(arr,start+1,r)
+```
