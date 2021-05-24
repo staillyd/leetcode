@@ -90,10 +90,10 @@ def merge(self,arr,l,m,r):
     '''合并两顺序数组
     
     @param:
-        arr     list    输入数组
-        l       int     左边界开始索引
-        m       int     右边界开始索引
-        r       int     右边界结束索引+1
+        arr:     list    输入数组
+        l:       int     左边界开始索引
+        m:       int     右边界开始索引
+        r:       int     右边界结束索引+1
     @Note:
         复制两子数组->合并两数组到原数组对应位置
     '''
@@ -142,35 +142,36 @@ def sort(self,arr,l,r):
   - 最理想的基准点是：被基准点分开的两个子数组中，数据的数量差不多。
   - 三数取中法:从区间的首、尾、中间，分别取出一个数，然后对比大小，取这 3 个数的中间值作为分区点
 ```python
-'''递归,注意终止条件
-        
-@Note:
-    1.定枢轴
-    2.循环(!!!内部每条都要加在递归条件内的条件!!!)
-        1.向左查找<枢轴的索引
-        2.替换左索引元素,左索引右移
-        3.向右查找>枢轴的索引
-        4.替换右索引元素,右索引左移
-    3.左索引元素=枢轴
-    4.左半、右半快排
-'''
-if l>=r:#递归终止条件
-    return
-num=arr[l]
-start=l
-end=r
-while start<end:#!!!内部每条都要加在递归条件内的条件!!!
-    while start<end and arr[end]>=num:#向左查找<枢轴的索引
-        end-=1
-    if start<end:
-        arr[start]=arr[end]
-        start+=1
-    while start<end and arr[start]<=num:#向右查找>枢轴的索引
-        start+=1
-    if start<end:
-        arr[end]=arr[start]
-        end-=1
-arr[start]=num
-self.sort(arr,l,start-1)
-self.sort(arr,start+1,r)
+def sort(self,arr,l,r):
+    '''递归,注意终止条件
+    
+    @Note:
+        1:定枢轴
+        2:循环(!!!内部每条都要加在递归条件内的条件!!!)
+            1:向左查找<枢轴的索引
+            2:替换左索引元素,左索引右移
+            3:向右查找>枢轴的索引
+            4:替换右索引元素,右索引左移
+        3:左索引元素=枢轴
+        4:左半、右半快排
+    '''
+    if l>=r:#递归终止条件
+        return
+    num=arr[l]
+    start=l
+    end=r
+    while start<end:#!!!内部每条都要加在递归条件内的条件!!!
+        while start<end and arr[end]>=num:#向左查找<枢轴的索引
+            end-=1
+        if start<end:
+            arr[start]=arr[end]
+            start+=1
+        while start<end and arr[start]<=num:#向右查找>枢轴的索引
+            start+=1
+        if start<end:
+            arr[end]=arr[start]
+            end-=1
+    arr[start]=num
+    self.sort(arr,l,start-1)
+    self.sort(arr,start+1,r)
 ```

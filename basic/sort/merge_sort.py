@@ -6,10 +6,10 @@ class Merge_Sort(object):
         '''合并两顺序数组
         
         @param:
-            arr     list    输入数组
-            l       int     左边界开始索引
-            m       int     右边界开始索引
-            r       int     右边界结束索引+1
+            arr:     list    输入数组
+            l:       int     左边界开始索引
+            m:       int     右边界开始索引
+            r:       int     右边界结束索引+1
         @Note:
             复制两子数组->合并两数组到原数组对应位置
         '''
