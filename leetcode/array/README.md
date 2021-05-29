@@ -86,3 +86,18 @@ def removeElement_modify(self, nums: List[int], val: int) -> int:
             l+=1
     return l
 ```
+
+## [移动零](283.py)
+- 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
+```python
+def moveZeroes(self, nums: List[int]) -> None:
+    '''快慢指针'''
+    j=0
+    for i in range(len(nums)):
+        if nums[i]!=0:
+            nums[j]=nums[i]
+            j+=1
+    
+    for i in range(j,len(nums)):
+        nums[i]=0
+```

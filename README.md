@@ -20,6 +20,7 @@
 - [删除有序数组中的重复项](leetcode/array/26.py)
 - [删除有序数组中的重复项II](leetcode/array/80.py)
 - [移除元素](leetcode/array/27.py)
+- [移动零](leetcode/array/283.py)
 
 # Ref
 > https://github.com/doocs/leetcode
