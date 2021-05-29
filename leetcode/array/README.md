@@ -60,3 +60,29 @@ def removeDuplicates_del(self, nums: List[int]) -> int:
                 cnt+=1
     return len_-cnt
 ```
+
+## [移除元素](27.py)
+- 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。元素的顺序可以改变。你**不需要考虑数组中超出新长度后面的元素**。
+```python
+def removeElement(self, nums: List[int], val: int) -> int:
+    '''快慢指针,遍历一次,不管后面的元素'''
+    slow=0
+    for fast in range(len(nums)):
+        if nums[fast]!=val:
+            nums[slow]=nums[fast]
+            slow+=1
+    return slow
+```
+```python
+def removeElement_modify(self, nums: List[int], val: int) -> int:
+    '''首尾指针'''
+    l=0
+    r=len(nums)-1
+    while l<=r:#和快排不同处,在l==r时不跳出
+        if nums[l]==val:#避免重复赋值
+            nums[l]=nums[r]
+            r=r-1
+        else:
+            l+=1
+    return l
+```
