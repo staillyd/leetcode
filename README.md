@@ -15,5 +15,10 @@
 - [查找第一个大于等于给定值的元素](basic/search/binary_search_3.py)
 - [查找最后一个小于等于给定值的元素](basic/search/binary_search_4.py)
 
+## 高频考题
+### [数组](leetcode/array/README.md)
+- [删除有序数组中的重复项](leetcode/array/26.py)
+- [删除有序数组中的重复项II](leetcode/array/80.py)
+
 # Ref
 > https://github.com/doocs/leetcode
