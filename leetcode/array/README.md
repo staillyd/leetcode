@@ -62,6 +62,7 @@ def removeDuplicates_del(self, nums: List[int]) -> int:
 ```
 
 ## [移除元素](27.py)
+- [Link](https://leetcode-cn.com/problems/remove-element/)
 - 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。元素的顺序可以改变。你**不需要考虑数组中超出新长度后面的元素**。
 ```python
 def removeElement(self, nums: List[int], val: int) -> int:
@@ -88,6 +89,7 @@ def removeElement_modify(self, nums: List[int], val: int) -> int:
 ```
 
 ## [移动零](283.py)
+- [Link](https://leetcode-cn.com/problems/move-zeroes/)
 - 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
 ```python
 def moveZeroes(self, nums: List[int]) -> None:
@@ -100,4 +102,29 @@ def moveZeroes(self, nums: List[int]) -> None:
     
     for i in range(j,len(nums)):
         nums[i]=0
+```
+
+## [数组中的重复数字](3.py)
+- [Link](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
+- 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+```python
+def findRepeatNumber(self, nums: List[int]) -> int:
+    '''原地交换'''
+    for i,num in enumerate(nums):
+        while i!=num:#当前位索引!=当前位
+            if num==nums[num]:#如果已经归位(nums[num])
+                return num
+            nums[i],nums[num]=nums[num],nums[i]#归位(nums[num])
+            num=nums[i]
+    return -1
+
+def findRepeatNumber_del(self, nums: List[int]) -> int:
+    '''内存占用高'''
+    dic={}
+    for i in nums:
+        if i not in dic:
+            dic[i]=True
+        else:
+            return i
+    return -1
 ```
