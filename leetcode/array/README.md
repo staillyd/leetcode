@@ -132,3 +132,18 @@ def findRepeatNumber_del(self, nums: List[int]) -> int:
             return i
     return -1
 ```
+
+## [旋转数组](189.py)
+- [Link](https://leetcode-cn.com/problems/rotate-array/)
+- 给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数
+- 反转数组可以用一个变量保存首位,然后遍历数组后索引赋值前值,末尾索引赋值保存的首位
+```python
+def rotate(self, nums: List[int], k: int) -> None:
+    k=k%len(nums)
+    if k==0:
+        return
+    nums[:]=nums[::-1]#反转数组
+    nums[:k]=nums[:k][::-1]
+    nums[k:]=nums[k:][::-1]
+```
+

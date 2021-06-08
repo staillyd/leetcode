@@ -22,6 +22,7 @@
 - [移除元素](leetcode/array/27.py)
 - [移动零](leetcode/array/283.py)
 - [数组中的重复数字](leetcode/array/3.py)
+- [旋转数组](leetcode/array/189.py)
 
 # Ref
 > https://github.com/doocs/leetcode
