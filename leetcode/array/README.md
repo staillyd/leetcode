@@ -147,3 +147,34 @@ def rotate(self, nums: List[int], k: int) -> None:
     nums[k:]=nums[k:][::-1]
 ```
 
+## [螺旋矩阵](54.py)
+- [Link](https://leetcode-cn.com/problems/spiral-matrix/)
+- 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素
+- 纯逻辑题.定义sx,sy,ex,ey.
+```python
+def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+    direct=0
+    output_arr=[]
+    sx,sy,ex,ey=0,0,len(matrix)-1,len(matrix[0])-1
+    while sx<=ex and sy<=ey:
+        if direct==0:
+            output_arr.extend(matrix[sx][sy:ey+1])
+            sx+=1
+            direct=1
+        elif direct==1:
+            for x in range(sx,ex+1):
+                output_arr.append(matrix[x][ey])
+            ey-=1
+            direct=2
+        elif direct==2:
+            for y in range(sy,ey+1)[::-1]:
+                output_arr.append(matrix[ex][y])
+            ex-=1
+            direct=3
+        elif direct==3:
+            for x in range(sx,ex+1)[::-1]:
+                output_arr.append(matrix[x][sy])
+            sy+=1
+            direct=0
+    return output_arr
+```
