@@ -178,3 +178,17 @@ def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
             direct=0
     return output_arr
 ```
+
+## [两数之和](1.py)
+- [Link](https://leetcode-cn.com/problems/two-sum/)
+- 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出和为目标值target的那两个整数，并返回它们的数组下标。
+```python
+def twoSum(self, nums: List[int], target: int) -> List[int]:
+    '''字典存储'''
+    num_idx={}
+    for i,num in enumerate(nums):
+        find_num=target-num
+        if find_num in num_idx:
+            return [num_idx[find_num],i]
+        num_idx[num]=i
+```
