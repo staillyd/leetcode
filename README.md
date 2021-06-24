@@ -25,6 +25,7 @@
 - [旋转数组](leetcode/array/189.py)
 - [螺旋矩阵](leetcode/array/54.py)
 - [两数之和](leetcode/array/1.py)
+- [三数之和](leetcode/array/15.py)
 
 # Ref
 > https://github.com/doocs/leetcode
