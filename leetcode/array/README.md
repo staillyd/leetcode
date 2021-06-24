@@ -275,3 +275,28 @@ def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
                     l+=1
     return ret
 ```
+
+## [较小的三数和](259.py)
+- [Link](https://leetcode-cn.com/problems/3sum-smaller/)
+- 给定一个长度为 n 的整数数组和一个目标值 target，寻找能够使条件 nums[i] + nums[j] + nums[k] < target 成立的三元组  i, j, k 个数（0 <= i < j < k < n）
+```python
+def threeSumSmaller(self, nums: List[int], target: int) -> int:
+    '''较小的三数和
+    
+    @Note:
+        排序->三指针,固定一个,双边遍历
+    '''
+    count=0
+    lens=len(nums)
+    nums=sorted(nums)
+    for i in range(lens):
+        l=i+1
+        r=lens-1
+        while l<r:#当前i下的所有满足条件的个数
+            if nums[i]+nums[l]+nums[r]>=target:
+                r-=1
+            else:
+                count+=r-l
+                l+=1#双边遍历
+    return count
+```
