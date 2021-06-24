@@ -28,6 +28,7 @@
 - [三数之和](leetcode/array/15.py)
 - [四数之和](leetcode/array/18.py)
 - [较小的三数和](leetcode/array/259.py)
+- [多数元素](leetcode/array/169.py)
 
 # Ref
 > https://github.com/doocs/leetcode

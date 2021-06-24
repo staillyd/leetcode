@@ -1,4 +1,28 @@
 # 数组
+## [多数元素](169.py)
+- [Link](https://leetcode-cn.com/problems/majority-element/)
+- 给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。可以假设数组是非空的，并且给定的数组总是存在多数元素。
+- 摩尔投票
+- 字典计数
+- 数组排序
+```python
+def majorityElement(self, nums: List[int]) -> int:
+    '''查找数组中的多数元素,多数元素:出现次数>n/2的元素.
+    
+    @Note:
+        对拼消耗,最差所有人都联合起来对付你
+    '''
+    major=None
+    cnt=0
+    for num in nums:
+        if cnt==0:
+            major=num
+            cnt=1
+        else:
+            cnt+=1 if major==num else -1
+    return major
+```
+
 ## [删除有序数组中的重复项](leetcode/array/26.py)
 - [Link](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)
 - 给你一个有序数组nums,请你**原地**删除重复出现的元素，使每个元素只出现一次 ，返回删除后数组的新长度。不要使用额外的数组空间，你必须在**原地**修改输入数组并在使用 O(1) 额外空间的条件下完成
