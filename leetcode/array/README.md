@@ -324,3 +324,38 @@ def threeSumSmaller(self, nums: List[int], target: int) -> int:
                 l+=1#双边遍历
     return count
 ```
+
+## [最接近的三数之和](16.py)
+- [Link](https://leetcode-cn.com/problems/3sum-closest/)
+- 给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。
+```python
+def threeSumClosest(self, nums: List[int], target: int) -> int:
+    '''最接近的三数和
+    
+    @Note:
+        排序->三指针,固定一个,双边遍历. 添加一个绝对差值判断
+    '''
+    lens=len(nums)
+    nums=sorted(nums)
+    diff=10000
+    ret=None
+    for i in range(lens):
+        if i>0 and nums[i]==nums[i-1]:
+            continue
+        l=i+1
+        r=lens-1
+        while l<r:
+            sum=nums[i]+nums[l]+nums[r]
+            if abs(sum-target)<diff:
+                diff=abs(sum-target)
+                ret=sum
+            if sum==target:
+                return sum
+            elif sum>target:
+                r-=1
+            elif sum<target:
+                l+=1
+    return ret
+```
+
+
