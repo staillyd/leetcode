@@ -30,6 +30,7 @@
 - [较小的三数和](leetcode/array/259.py)
 - [多数元素](leetcode/array/169.py)
 - [最接近的三数和](leetcode/array/16.py)
+- [合并两个有序数组](leetcode/array/88.py)
 
 # Ref
 > https://github.com/doocs/leetcode

@@ -358,4 +358,30 @@ def threeSumClosest(self, nums: List[int], target: int) -> int:
     return ret
 ```
 
-
+## [合并两个有序数组](88.py)
+- [Link](https://github.com/doocs/leetcode/blob/main/solution/0000-0099/0088.Merge%20Sorted%20Array/README.md)
+- 给你两个有序整数数组 nums1 和 nums2，请你将 nums2 合并到 nums1 中，使 nums1 成为一个有序数组。初始化 nums1 和 nums2 的元素数量分别为 m 和 n 。你可以假设 nums1 的空间大小等于 m + n，这样它就有足够的空间保存来自 nums2 的元素。
+```python
+def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+    '''合并两个有序数组
+    
+    @Note:
+        类似归并排序，从后往前
+    '''
+    i,j,k=m-1,n-1,m+n-1
+    if n==0:
+        return
+    while True:
+        if nums1[i]>nums2[j]:
+            nums1[k]=nums1[i]
+            k-=1
+            i-=1
+        else:
+            nums1[k]=nums2[j]
+            j-=1
+            k-=1
+        if i==-1 or j==-1:
+            break
+    if i==-1:
+        nums1[:j+1]=nums2[:j+1]#注意左闭右开
+```
