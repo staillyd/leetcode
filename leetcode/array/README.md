@@ -410,7 +410,8 @@ def findMin(self, nums: List[int]) -> int:
     return nums[l]
 ```
 
-## [寻找旋转排序数组中的最小值 II]
+## [寻找旋转排序数组中的最小值 II](154.py)
+- [Link](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
 - 已知一个长度为 n 的数组，预先按照升序排列，经由 1 到 n 次 旋转 后，得到输入数组。例如，原数组 nums = [0,1,4,4,5,6,7] 在变化后可能得到：
   - 若旋转 4 次，则可以得到 [4,5,6,7,0,1,4]
   - 若旋转 7 次，则可以得到 [0,1,4,4,5,6,7]
@@ -434,4 +435,34 @@ def findMin(self, nums: List[int]) -> int:
         else:
             r-=1#为应对3、3、1、3情况
     return nums[l]
+```
+
+## [除自身以外数组的乘积](238.py)
+- [Link](https://leetcode-cn.com/problems/product-of-array-except-self/)
+- 给你一个长度为 n 的整数数组 nums，其中 n > 1，返回输出数组 output ，其中 output[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。
+  - 请不要使用除法，且在 O(n) 时间复杂度内完成此题。
+- res等于下方矩阵每行的乘积，将矩阵分为上三角、下三角进行循环乘法
+
+| **res**      |         |         |     |           |
+| ------------ | ------- | ------- | --- | --------- |
+| **res[0]**   | 1       | nums[1] | ... | nums[n-1] |
+| **res[1]**   | nums[0] | 1       | ... | nums[n-1] |
+| **res[2]**   | nums[0] | nums[1] | ... | nums[n-1] |
+| **...**      | nums[0] | nums[1] | ... | nums[n-1] |
+| **res[n-1]** | nums[0] | nums[1] | ... | 1         |
+
+```python
+def productExceptSelf(self, nums: List[int]) -> List[int]:
+    '''除自身以外数组的乘积
+    '''
+    res=[1]
+    l,r=1,1
+    lens=len(nums)
+    for i in range(lens-1):#下三角0~n-2
+        l*=nums[i]
+        res.append(l)
+    for j in range(lens-1,0,-1):#上三角n-1~1
+        r*=nums[j]
+        res[j-1]*=r
+    return res
 ```
