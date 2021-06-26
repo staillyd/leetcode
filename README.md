@@ -32,6 +32,7 @@
 - [最接近的三数和](leetcode/array/16.py)
 - [合并两个有序数组](leetcode/array/88.py)
 - [寻找旋转排序数组中的最小值](leetcode/array/153.py)
+- [寻找旋转排序数组中的最小值 II](leetcode/array/154.py)
 
 # Ref
 > https://github.com/doocs/leetcode
