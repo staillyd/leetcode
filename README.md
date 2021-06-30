@@ -14,6 +14,7 @@
 - [查找最后一个值等于给定值的元素](basic/search/binary_search_2.py)
 - [查找第一个大于等于给定值的元素](basic/search/binary_search_3.py)
 - [查找最后一个小于等于给定值的元素](basic/search/binary_search_4.py)
+- [在排序数组中查找元素的第一个和最后一个位置](basic/search/34.py)
 
 ## 高频考题
 ### [数组](leetcode/array/README.md)
