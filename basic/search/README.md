@@ -129,3 +129,22 @@ def searchRange(self, nums: List[int], target: int) -> List[int]:
             l=m+1
     return [first,last]
 ```
+
+## [x 的平方根](69.py)
+```python
+def mySqrt(self, x: int) -> int:
+    '''求平方根'''
+    l,r=0,x
+    ret=-1
+    while l<=r:
+        m=(l+r)//2
+        this_product=m*m
+        if this_product<x:
+            ret=m
+            l=m+1
+        elif this_product>x:
+            r=m-1
+        else:
+            return m
+    return ret
+```
