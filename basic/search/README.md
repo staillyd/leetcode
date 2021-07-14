@@ -148,3 +148,23 @@ def mySqrt(self, x: int) -> int:
             return m
     return ret
 ```
+
+## [寻找峰值](162.py)
+- [Link](https://leetcode-cn.com/problems/find-peak-element/submissions/)
+- 峰值元素是指其值大于左右相邻值的元素。
+- 给你一个无重复元素的输入数组 nums，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回 任何一个峰值 所在位置即可。可以假设 nums[-1] = nums[n] = -∞ 。
+1. 找最大值
+2. 遍历找满足条件的
+3. 二分法:比较m与m+1,更改左右边界
+```python
+def findPeakElement(self, nums: List[int]) -> int:
+    '''返回索引,寻找无重复元素中的极大值'''
+    l,r=0,len(nums)-1
+    while l<r:#注意条件
+        m=(l+r)//2
+        if nums[m]>nums[m+1]:
+            r=m
+        else:
+            l=m+1
+    return l
+```
