@@ -168,3 +168,31 @@ def findPeakElement(self, nums: List[int]) -> int:
             l=m+1
     return l
 ```
+
+## [寻找第一个错误版本](278.py)
+- [Link](https://leetcode-cn.com/problems/first-bad-version/)
+- 假设你有 n 个版本 [1, 2, ..., n]，你想找出导致之后所有版本出错的第一个错误的版本。
+- 你可以通过调用 bool isBadVersion(version) 接口来判断版本号 version 是否在单元测试中出错。实现一个函数来查找第一个错误的版本。你应该尽量减少对调用 API 的次数。
+```python
+# The isBadVersion API is already defined for you.
+# @param version, an integer
+# @return an integer
+# def isBadVersion(version):
+
+class Solution:
+    def firstBadVersion(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        l,r=1,n
+        while l<r:
+            m=(l+r)//2
+            ret=isBadVersion(m)
+            if ret:
+                r=m
+            else:
+                l=m+1
+        return l
+```
+
