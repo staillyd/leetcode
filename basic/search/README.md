@@ -162,7 +162,7 @@ def findPeakElement(self, nums: List[int]) -> int:
     l,r=0,len(nums)-1
     while l<r:#注意条件
         m=(l+r)//2
-        if nums[m]>nums[m+1]:
+        if nums[m]>nums[m+1]:#比较m与m+1
             r=m
         else:
             l=m+1
@@ -196,3 +196,23 @@ class Solution:
         return l
 ```
 
+## [不动点](1064.py)
+- [Link](https://leetcode-cn.com/problems/fixed-point/)
+- 给定已经按 升序 排列、由不同整数组成的数组 arr，返回满足 arr[i] == i 的最小索引 i。如果不存在这样的 i，返回 -1
+```python
+def fixedPoint(self, arr: List[int]) -> int:
+    '''寻找满足 arr[i] == i 的最小索引 i'''
+    l,r=0,len(arr)-1
+    while l<r:
+        m=(l+r)//2
+        if arr[m]<m:
+            l=m+1
+        elif arr[m]==m:
+            r=m#要找最小索引
+        else:
+            r=m-1
+    if arr[l]!=l:
+        return -1
+    else:
+        return l
+```

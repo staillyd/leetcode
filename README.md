@@ -18,6 +18,7 @@
 - [求平方根](basic/search/69.py)
 - [寻找峰值](basic/search/162.py)
 - [寻找第一个错误版本](basic/search/278.py)
+- [不动点](basic/search/1064.py)
 
 ## 高频考题
 ### [数组](leetcode/array/README.md)
