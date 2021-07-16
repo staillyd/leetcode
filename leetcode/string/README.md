@@ -2,7 +2,7 @@
 ## [无重复字符的最长子串](3.py)
 - [Link](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
 - 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度
-- 滑动窗口法!!!
+- 滑动窗口法!!!  重点在于滑动的流程,这个流程需要思考
 - 定义num_count字典:保存字符出现次数,保证出现次数都<=1,
 ```python
 def lengthOfLongestSubstring(self, s: str) -> int:
@@ -82,7 +82,7 @@ def minWindow(self, s: str, t: str) -> str:
     l,r=0,0
     min_len=len(s)
     ret=''
-    all_need_cnt=len(t)#满足条件仍需要的个数
+    all_need_cnt=len(t)#仍需要的个数才能满足条件
     for r in range(len(s)):
         if s[r] in need_cnt:
             if need_cnt[s[r]]>0:
@@ -99,5 +99,32 @@ def minWindow(self, s: str, t: str) -> str:
                 if need_cnt[s[l]]>0:
                     all_need_cnt+=1
             l+=1
+    return ret
+```
+
+## [至多包含两个不同字符的最长子串](159.py)
+- [Link](https://leetcode-cn.com/problems/longest-substring-with-at-most-two-distinct-characters/)
+- 给定一个字符串 s ，找出 至多 包含两个不同字符的最长子串 t 
+```python
+def lengthOfLongestSubstringTwoDistinct(self, s: str) -> str:
+    '''至多包含两个不同字符的最长子串'''
+    char_count={}#滑动窗口中字符出现的次数
+    l,r=0,0
+    max_len=0
+    ret=''
+    for r in range(len(s)):
+        if s[r] not in char_count:
+            char_count[s[r]]=0
+        char_count[s[r]]+=1
+
+        while len(char_count)>2:#如果不满足条件
+            char_count[s[l]]-=1
+            if char_count[s[l]]==0:
+                char_count.pop(s[l])
+            l+=1
+
+        if r-l+1>max_len:
+            max_len=r-l+1
+            ret=s[l:r+1]
     return ret
 ```

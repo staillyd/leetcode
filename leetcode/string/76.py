@@ -15,7 +15,7 @@ class Solution:
         l,r=0,0
         min_len=len(s)
         ret=''
-        all_need_cnt=len(t)#满足条件仍需要的个数
+        all_need_cnt=len(t)#仍需要的个数才能满足条件
         for r in range(len(s)):
             if s[r] in need_cnt:
                 if need_cnt[s[r]]>0:
