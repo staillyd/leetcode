@@ -42,6 +42,7 @@
 
 ### [字符串](leetcode/string/README.md)
 - [无重复字符的最长子串](leetcode/string/3.py)
+- [最小覆盖子串](leetcode/string/76.py)
 
 # Ref
 > https://github.com/doocs/leetcode

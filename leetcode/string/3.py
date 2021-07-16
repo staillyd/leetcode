@@ -8,7 +8,7 @@ class Solution:
             滑动窗口法,进入这个队列（窗口）为 abc 满足题目要求，当再进入 a，队列变成了 abca，这时候不满足要求.将最左侧的元素移除
             字典:保存字符出现次数,保证出现次数都<=1,
         '''
-        num_count={}
+        num_count={}#滑动窗口中各字符出现的个数
         l,r=0,0
         max_len=0
         for r in range(len(s)):
@@ -16,7 +16,7 @@ class Solution:
                 num_count[s[r]]=0
             num_count[s[r]]+=1
 
-            while num_count[s[r]]>1:#从左往右去除不满足条件的值
+            while num_count[s[r]]>1:#当出现重复的时候,从左往右去除不满足条件的值
                 num_count[s[l]]-=1
                 l+=1
             max_len=max(max_len,r-l+1)#当前满足条件的长
