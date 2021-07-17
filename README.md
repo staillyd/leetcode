@@ -45,6 +45,7 @@
 - [最小覆盖子串](leetcode/string/76.py)
 - [至多包含两个不同字符的最长子串](leetcode/string/159.py)
 - [串联所有单词的子串](leetcode/string/30.py)
+- [最长公共前缀](leetcode/string/14.py)
 
 # Ref
 > https://github.com/doocs/leetcode

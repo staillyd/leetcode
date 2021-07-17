@@ -216,3 +216,30 @@ def findSubstring_all(self, s: str, words: List[str]) -> List[int]:
                 break
     return ret
 ```
+
+## [最长公共前缀]()
+- [Link](https://leetcode-cn.com/problems/longest-common-prefix/)
+- 编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。
+```python
+def longestCommonPrefix(self, strs: List[str]) -> str:
+    '''最长公共前缀
+    
+    @Note:
+        纵向比较
+    '''
+    if len(strs)==0:
+        return ''
+    for j in range(len(strs[0])):
+        for i in range(1,len(strs)):
+            if len(strs[i])<j+1 or strs[i][j]!=strs[0][j]:
+                return strs[0][:j]
+    return strs[0]#注意这,如果前面条件都满足,那么返回strs[0]
+```
+
+# TODO
+## 滑动窗口
+  - [长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
+  - [滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)
+  - [字符串的排列](https://leetcode-cn.com/problems/permutation-in-string/)
+  - [最小区间](https://leetcode-cn.com/problems/smallest-range/)
+- 
