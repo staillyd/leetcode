@@ -261,10 +261,48 @@ def reverseVowels(self, s: str) -> str:
     return ''.join(s)
 ```
 
+## [字符串转换整数](8.py)
+- [Link](https://leetcode-cn.com/problems/string-to-integer-atoi/)
+- 实现一个 myAtoi(string s) 函数，使其能将字符串转换成一个 32 位有符号整数（类似 C/C++ 中的 atoi 函数）。
+- 函数 myAtoi(string s) 的算法如下：
+  - 读入字符串并丢弃无用的前导空格
+  - 检查下一个字符（假设还未到字符末尾）为正还是负号，读取该字符（如果有）。 确定最终结果是负数还是正数。 如果两者都不存在，则假定结果为正。
+  - 读入下一个字符，直到到达下一个非数字字符或到达输入的结尾。字符串的其余部分将被忽略。
+  - 将前面步骤读入的这些数字转换为整数（即，"123" -> 123， "0032" -> 32）。如果没有读入数字，则整数为 0 。必要时更改符号（从步骤 2 开始）。
+  - 如果整数数超过 32 位有符号整数范围 [−231,  231 − 1] ，需要截断这个整数，使其保持在这个范围内。具体来说，小于 −231 的整数应该被固定为 −231 ，大于 231 − 1 的整数应该被固定为 231 − 1 。
+  - 返回整数作为最终结果。
+```python
+def myAtoi(self, s: str) -> int:
+    '''字符串转换整数 (atoi)'''
+    if len(s)==0:#特例
+        return 0
+    ret=0
+    i=0
+    while s[i]==' ':#去' '
+        i+=1
+        if i==len(s):#特例
+            return 0
+    pos_neg=-1 if s[i]=='-' else 1#正负号
+    if s[i] in ['-','+']:#如果是正负号往右走!!!
+        i+=1
+    near_overflow_data=2**31//10
+    while i<len(s):
+        if not s[i].isdigit():
+            return pos_neg*ret
+        
+        int_char=int(s[i])
+        # 溢出判断
+        if ret>near_overflow_data or (ret==near_overflow_data and int_char>7):#数字部分超过2147483647那么是边界值
+            return 2 ** 31 - 1 if pos_neg > 0 else -2 ** 31#-2147483648~2147483647
+
+        ret=10*ret+int_char
+        i+=1
+    return ret*pos_neg
+```
+
 # TODO
 ## 滑动窗口
   - [长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
   - [滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)
   - [字符串的排列](https://leetcode-cn.com/problems/permutation-in-string/)
   - [最小区间](https://leetcode-cn.com/problems/smallest-range/)
-- 

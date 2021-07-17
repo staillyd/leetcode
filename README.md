@@ -47,6 +47,7 @@
 - [串联所有单词的子串](leetcode/string/30.py)
 - [最长公共前缀](leetcode/string/14.py)
 - [反转该字符串中的元音字母](leetcode/string/345.py)
+- [字符串转换整数 (atoi)](leetcode/string/8.py)
 
 # Ref
 > https://github.com/doocs/leetcode
