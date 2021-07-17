@@ -217,7 +217,7 @@ def findSubstring_all(self, s: str, words: List[str]) -> List[int]:
     return ret
 ```
 
-## [最长公共前缀]()
+## [最长公共前缀](14.py)
 - [Link](https://leetcode-cn.com/problems/longest-common-prefix/)
 - 编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。
 ```python
@@ -234,6 +234,31 @@ def longestCommonPrefix(self, strs: List[str]) -> str:
             if len(strs[i])<j+1 or strs[i][j]!=strs[0][j]:
                 return strs[0][:j]
     return strs[0]#注意这,如果前面条件都满足,那么返回strs[0]
+```
+
+## [反转字符串中的元音字母](345.py)
+- [Link](https://leetcode-cn.com/problems/reverse-vowels-of-a-string/)
+- 编写一个函数，以字符串作为输入，反转该字符串中的元音字母
+```python
+def reverseVowels(self, s: str) -> str:
+    '''反转该字符串中的元音字母
+    
+    @Note:
+        类似快排，左右指针
+    '''
+    vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+    i, j = 0, len(s) - 1
+    s=list(s)
+    while i<j:
+        while i<j and s[i] not in vowels:
+            i+=1
+        while i<j and s[j] not in vowels:
+            j-=1
+        if i<j:
+            s[i],s[j]=s[j],s[i]
+        else:
+            break
+    return ''.join(s)
 ```
 
 # TODO
