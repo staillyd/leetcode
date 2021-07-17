@@ -300,6 +300,33 @@ def myAtoi(self, s: str) -> int:
     return ret*pos_neg
 ```
 
+## [赎金信]()
+- [Link](https://leetcode-cn.com/problems/ransom-note/)
+- 给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，判断第一个字符串 ransom 能不能由第二个字符串 magazines 里面的字符构成。如果可以构成，返回 true ；否则返回 false。
+```python
+def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+    '''赎金信
+    
+    @Note:
+        类似滑动窗口中定义一个满足条件的变量
+    '''
+    all_len=len(ransomNote)#满足条件的变量
+    char_count={}
+    for char in magazine:
+        if char not in char_count:
+            char_count[char]=0
+        char_count[char]+=1
+    for r in range(len(ransomNote)):
+        if ransomNote[r] in char_count:
+            char_count[ransomNote[r]]-=1
+            if char_count[ransomNote[r]]<0:
+                return False
+            all_len-=1
+        else:
+            break
+    return all_len==0
+```
+
 # TODO
 ## 滑动窗口
   - [长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)

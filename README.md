@@ -48,6 +48,7 @@
 - [最长公共前缀](leetcode/string/14.py)
 - [反转该字符串中的元音字母](leetcode/string/345.py)
 - [字符串转换整数 (atoi)](leetcode/string/8.py)
+- [赎金信](leetcode/string/383.py)
 
 # Ref
 > https://github.com/doocs/leetcode
