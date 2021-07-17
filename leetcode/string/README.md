@@ -65,7 +65,9 @@ def lengthOfLongestSubstring_3(self, s: str) -> int:
 ## [最小覆盖子串](76.py)
 - [Link](https://leetcode-cn.com/problems/minimum-window-substring/)
 - 给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 ""
-- 定义变量need_cnt:滑动窗口中t字符还需要的个数;all_need_cnt:满足条件仍需要的个数(为了避免遍历need_cnt是否都为0);
+- 定义变量
+  - need_cnt:滑动窗口中t字符还需要的个数
+  - all_need_cnt:满足条件仍需要的个数(为了避免遍历need_cnt是否都为0)
 - 当满足条件时，滑动窗口往外扔，进行下一次迭代
 ```python
 def minWindow(self, s: str, t: str) -> str:
@@ -126,5 +128,91 @@ def lengthOfLongestSubstringTwoDistinct(self, s: str) -> str:
         if r-l+1>max_len:
             max_len=r-l+1
             ret=s[l:r+1]
+    return ret
+```
+
+## [串联所有单词的子串](30.py)
+- [Link](https://leetcode-cn.com/problems/substring-with-concatenation-of-all-words/)
+- 给定一个字符串 s 和一些 长度相同 的单词 words 。找出 s 中恰好可以由 words 中所有单词串联形成的子串的起始位置。
+- 注意子串要与 words 中的单词完全匹配，中间不能有其他字符 ，但不需要考虑 words 中单词串联的顺序。
+- ![](imgs/串联所有单词的子串_1.png)
+- ![](imgs/串联所有单词的子串_2.png)
+- ![](imgs/串联所有单词的子串_3.png)
+```python
+def findSubstring(self, s: str, words: List[str]) -> List[int]:
+    '''串联所有单词的子串，单词长度一致
+    
+    @Note:
+        滑动窗口法,单词当作一个元素
+    '''
+    ret=[]
+    word_len=len(words[0])
+    for i in range(word_len):#单词长度内每位往后 单词长度
+        all_need_cnt=len(words)#仍需要的个数才能满足条件
+        word_count={}#滑动窗口还需要的次数
+        for word in words:
+            if word not in word_count:
+                word_count[word]=0
+            word_count[word]+=1
+        l,r=i,i
+        for r in range(i,len(s),word_len):
+            this_word=s[r:r+word_len]
+            if this_word in word_count:
+                if word_count[this_word]>0:
+                    all_need_cnt-=1
+                    word_count[this_word]-=1
+
+                    if all_need_cnt==0:#满足条件
+                        ret.append(l)
+                        old_word=s[l:l+word_len]#l往右平移
+                        word_count[old_word]+=1
+                        all_need_cnt+=1
+                        l=l+word_len
+                else:#当前单词出现次数过多
+                    while s[l:l+word_len]!=this_word:#l往右平移
+                        word_count[s[l:l+word_len]]+=1
+                        all_need_cnt+=1
+                        l+=word_len
+                    l=l+word_len
+            
+            else:#当前单词不满足
+                while l!=r:#之前的单词  #l往右平移
+                    old_word=s[l:l+word_len]
+                    word_count[old_word]+=1
+                    all_need_cnt+=1
+                    l+=word_len
+                l+=word_len
+    return ret
+```
+```python
+def findSubstring_all(self, s: str, words: List[str]) -> List[int]:
+    '''串联所有单词的子串，单词长度一致
+    
+    @Note:
+        滑动窗口法,单词当作一个元素  穷举
+    '''
+    l,r=0,0
+    ret=[]
+    word_len=len(words[0])
+    for r in range(len(s)):
+        all_need_cnt=len(words)#仍需要的个数才能满足条件
+        word_count={}#滑动窗口需要的次数
+        for word in words:
+            if word not in word_count:
+                word_count[word]=0
+            word_count[word]+=1
+        for this_r in range(r,len(s),word_len):
+            this_word=s[this_r:this_r+word_len]
+            if this_word in word_count:
+                if word_count[this_word]>0:
+                    all_need_cnt-=1
+                word_count[this_word]-=1
+                if word_count[this_word]<0:
+                    word_count[this_word]+=1
+                    break
+                if all_need_cnt==0:
+                    ret.append(r)
+            else:
+                break
     return ret
 ```
