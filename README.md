@@ -50,5 +50,8 @@
 - [字符串转换整数 (atoi)](leetcode/string/8.py)
 - [赎金信](leetcode/string/383.py)
 
+### [链表](leetcode/chain/README.md)
+- [两数求和](leetcode/chain/2.py)
+
 # Ref
 > https://github.com/doocs/leetcode
