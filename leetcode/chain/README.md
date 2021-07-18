@@ -64,3 +64,14 @@ def reversePrint(self, head: ListNode) -> List[int]:
         head=head.next
     return ret[::-1]
 ```
+
+## [删除链表中的节点](237.py)
+- [Link](https://leetcode-cn.com/problems/delete-node-in-a-linked-list/)
+- 请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点。传入函数的唯一参数为 要被删除的节点 。
+```python
+def deleteNode(self, node):
+    """删除传入的node节点"""
+    node.val=node.next.val
+    node.next=node.next.next
+```
+

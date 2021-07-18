@@ -54,6 +54,7 @@
 - [两数求和](leetcode/chain/2.py)
 - [两数求和II](leetcode/chain/445.py)
 - [从尾到头打印链表](leetcode/chain/6.py)
+- [删除链表中的节点](leetcode/chain/237.py)
 
 # Ref
 > https://github.com/doocs/leetcode
