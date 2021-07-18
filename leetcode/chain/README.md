@@ -21,3 +21,33 @@ def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         l2=None if l2 is None else l2.next#挪位
     return ret.next#舍弃初始的节点
 ```
+
+## [两数相加II](445.py)
+- [Link](https://leetcode-cn.com/problems/add-two-numbers-ii/)
+- 给你两个 非空 链表来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。
+- 你可以假设除了数字 0 之外，这两个数字都不会以零开头。
+```python
+def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        '''两数之和II,高位指向低位'''
+        reverse_l1=[]#stack
+        while l1 is not None:
+            reverse_l1.append(l1.val)
+            l1=l1.next
+        
+        reverse_l2=[]#stack
+        while l2 is not None:
+            reverse_l2.append(l2.val)
+            l2=l2.next
+
+        last=None
+        add=0
+        while len(reverse_l1)!=0 or len(reverse_l2)!=0 or add!=0:
+            sum=(0 if len(reverse_l1)==0 else reverse_l1.pop()) + \
+                (0 if len(reverse_l2)==0 else reverse_l2.pop()) + add# stack进行顺序翻转
+
+            add,sum=divmod(sum,10)
+
+            ret=ListNode(sum,last)
+            last=ret
+        return ret
+```

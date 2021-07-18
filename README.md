@@ -52,6 +52,7 @@
 
 ### [链表](leetcode/chain/README.md)
 - [两数求和](leetcode/chain/2.py)
+- [两数求和II](leetcode/chain/445.py)
 
 # Ref
 > https://github.com/doocs/leetcode
