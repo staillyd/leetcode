@@ -75,3 +75,18 @@ def deleteNode(self, node):
     node.next=node.next.next
 ```
 
+## [删除排序链表中的重复值](83.py)
+- [Link](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
+- 存在一个按升序排列的链表，给你这个链表的头节点 head ，请你删除所有重复的元素，使每个元素 只出现一次 。
+- 返回同样按升序排列的结果链表。
+```python
+def deleteDuplicates(self, head: ListNode) -> ListNode:
+    '''删除排序链表中的重复值'''
+    ret=head
+    while head is not None:
+        if head.next is not None and head.val==head.next.val:
+            head.next=head.next.next
+        else:
+            head=head.next
+    return ret
+```
