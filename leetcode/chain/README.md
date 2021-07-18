@@ -51,3 +51,16 @@ def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
             last=ret
         return ret
 ```
+
+## [从尾到头打印链表](6.py)
+- [Link](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
+- 输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）
+```python
+def reversePrint(self, head: ListNode) -> List[int]:
+    '''从尾到头打印链表'''
+    ret=[]
+    while head is not None:
+        ret.append(head.val)
+        head=head.next
+    return ret[::-1]
+```
