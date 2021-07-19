@@ -258,3 +258,36 @@ def mergeKLists_sort(self,lists: List[ListNode],l,r) -> ListNode:
     l2=self.mergeKLists_sort(lists,m+1,r)
     return self.merge2Lists(l1,l2)
 ```
+
+## [插入排序](147.py)
+- [Link](https://leetcode-cn.com/problems/insertion-sort-list/)
+- 对链表进行插入排序。
+- **链表题记得画图**
+```python
+def insertionSortList(self, head: ListNode) -> ListNode:
+    '''插入排序
+    
+    @Note:
+        画图!!!
+    '''
+    ret=ListNode(0,head)
+    last_sorted=head
+    cur=head.next
+    while cur:
+        if last_sorted.val<=cur.val:
+            cur=cur.next
+            last_sorted=last_sorted.next
+            continue
+        
+        find=ret.next
+        last_find=ret
+        while find.val<=cur.val:
+            find=find.next
+            last_find=last_find.next
+        
+        last_sorted.next=cur.next
+        cur.next=find
+        last_find.next=cur
+        cur=last_sorted.next
+    return ret.next
+```
