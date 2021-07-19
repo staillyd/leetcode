@@ -190,3 +190,22 @@ def swapPairs(self, head: ListNode) -> ListNode:
     return ret.next
 ```
 
+## [合并两个有序链表](21.py)
+- [Link](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+- 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+```python
+def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+    '''合并两个有序链表'''
+    ret=ListNode()
+    last=ret
+    while l1 is not None and l2 is not None:
+        if l1.val<=l2.val:
+            last.next=l1
+            l1=l1.next#挪位
+        else:
+            last.next=l2
+            l2=l2.next#挪位
+        last=last.next
+    last.next=l1 if l1 is not None else l2#剩余长度
+    return ret.next
+```
