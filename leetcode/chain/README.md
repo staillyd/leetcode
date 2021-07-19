@@ -291,3 +291,40 @@ def insertionSortList(self, head: ListNode) -> ListNode:
         cur=last_sorted.next
     return ret.next
 ```
+
+## [排序链表](148.py)
+- [Link](https://leetcode-cn.com/problems/sort-list/)
+- 给你链表的头结点 head ，请将其按 升序 排列并返回 排序后的链表 。
+- 归并排序
+```python
+def merge2List(self,l1:ListNode,l2:ListNode)->ListNode:
+    ret=ListNode()
+    last=ret
+    while l1 and l2:
+        if l1.val<=l2.val:
+            last.next=l1
+            l1=l1.next
+        else:
+            last.next=l2
+            l2=l2.next
+        last=last.next
+    last.next=l1 if l2 is None else l2
+    return ret.next        
+
+def sortList(self, head: ListNode) -> ListNode:
+    if head is None or head.next is None:
+        return head
+    
+    # 快慢指针求中间位置
+    slow=head
+    fast=head.next#!!!很关键
+    while fast is not None and fast.next is not None:
+        slow=slow.next
+        fast=fast.next.next
+    m=slow.next
+    slow.next=None#关键
+
+    l1=self.sortList(head)
+    l2=self.sortList(m)
+    return self.merge2List(l1,l2)
+```
