@@ -56,6 +56,7 @@
 - [从尾到头打印链表](leetcode/chain/6.py)
 - [删除链表中的节点](leetcode/chain/237.py)
 - [删除排序链表中的重复元素](leetcode/chain/83.py)
+- [删除排序链表中的重复元素 II](leetcode/chain/82.py)
 
 # Ref
 > https://github.com/doocs/leetcode
