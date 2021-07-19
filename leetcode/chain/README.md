@@ -110,7 +110,36 @@ def deleteDuplicates(self, head: ListNode) -> ListNode:
             last.next=head
         else:
             last.next=head
+            last=last.next#挪位，只有此处进行last的挪位
             head=head.next
-            last=last.next#挪位，只有此处进行last的挪位   
+    return ret.next
+```
+
+## [移除链表元素](203.py)
+- [Link](https://leetcode-cn.com/problems/remove-linked-list-elements/)
+- 给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。
+- 链表移除元素
+  - ```python
+        if flag:
+            head=head.next#旧挪位
+            last.next=head#新指向
+        else:
+            last.next=head#新指向
+            last=last.next#新挪位，只有此处进行last的挪位
+            head=head.next#旧挪位
+    ```
+```python
+def removeElements(self, head: ListNode, val: int) -> ListNode:
+    '''移除链表元素'''
+    ret=ListNode()
+    last=ret
+    while head is not None:
+        if head.val==val:#满足删除条件
+            head=head.next
+            last.next=head#指向
+        else:
+            last.next=head
+            last=last.next#挪位
+            head=head.next
     return ret.next
 ```

@@ -18,7 +18,7 @@ class Solution:
                 last.next=head
             else:
                 last.next=head
+                last=last.next#挪位，只有此处进行last的挪位
                 head=head.next
-                last=last.next#挪位，只有此处进行last的挪位   
         return ret.next
             
