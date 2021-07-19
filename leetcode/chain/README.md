@@ -163,3 +163,30 @@ def kthToLast(self, head: ListNode, k: int) -> int:
         q=q.next
     return q.val
 ```
+
+## [两两交换链表中的节点](24.py)
+- [Link](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+- 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+```python
+def swapPairs(self, head: ListNode) -> ListNode:
+    '''两两交换链表中的节点
+    
+    @Note:
+        新增虚拟节点
+    '''
+    ret=ListNode()
+    ret.next=head
+    last=ret
+    while head is not None:
+        tmp=head.next
+        if tmp is not None:
+            head.next=tmp.next
+            tmp.next=head
+            last.next=tmp
+            last=head# 挪位
+            head=head.next#挪位
+        else:
+            break
+    return ret.next
+```
+
