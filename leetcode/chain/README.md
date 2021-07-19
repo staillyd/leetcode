@@ -143,3 +143,23 @@ def removeElements(self, head: ListNode, val: int) -> ListNode:
             head=head.next
     return ret.next
 ```
+
+## [返回倒数第 k 个节点]
+- [Link](https://leetcode-cn.com/problems/kth-node-from-end-of-list-lcci/)
+- 实现一种算法，找出单向链表中倒数第 k 个节点。返回该节点的值。
+```python
+def kthToLast(self, head: ListNode, k: int) -> int:
+    '''返回倒数第 k 个节点
+    
+    @Note:
+        p,q都指向head,p先走k步,然后pq都往前走,直到p为None
+        快慢指针
+    '''
+    p,q=head,head
+    for i in range(k):
+        p=p.next
+    while p is not None:
+        p=p.next
+        q=q.next
+    return q.val
+```
