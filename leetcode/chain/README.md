@@ -209,3 +209,52 @@ def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
     last.next=l1 if l1 is not None else l2#剩余长度
     return ret.next
 ```
+
+## [合并K个升序链表](23.py)
+- [Link](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
+- 给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中，返回合并后的链表
+- 思路:合并前后两个链表，结果放在后一个链表位置上，依次循环下去。$O(k^2n)$
+  - $k$:lists长度
+  - $n$:lists元素的平均长度
+- 思路:归并排序变种  $O(klog(k)n)$
+```python
+def merge2Lists(self,l1:ListNode,l2:ListNode) -> ListNode:
+    ret=ListNode()
+    last=ret
+    while l1 and l2:
+        if l1.val<=l2.val:
+            last.next=l1
+            l1=l1.next
+        else:
+            last.next=l2
+            l2=l2.next
+        last=last.next
+    last.next=l1 if l1 is not None else l2
+    return ret.next
+
+def mergeKLists_all(self, lists: List[ListNode]) -> ListNode:
+    '''合并K个有序链表'''
+    if len(lists)==0 or lists is None:
+        return None
+    for i in range(1,len(lists)):
+        lists[i]=self.merge2Lists(lists[i-1],lists[i])
+    return lists[len(lists)-1]
+
+def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+    '''合并K个有序链表
+    
+    @Note:
+        归并排序
+    '''
+    if len(lists)==0 or lists is None:
+        return None
+    return self.mergeKLists_sort(lists,0,len(lists)-1)
+
+def mergeKLists_sort(self,lists: List[ListNode],l,r) -> ListNode:
+    if l==r:
+        return lists[l]#注意返回值,merge2Lists会更改原链表
+    m=(l+r)//2
+    l1=self.mergeKLists_sort(lists,l,m)
+    l2=self.mergeKLists_sort(lists,m+1,r)
+    return self.merge2Lists(l1,l2)
+```
