@@ -295,7 +295,7 @@ def insertionSortList(self, head: ListNode) -> ListNode:
 ## [排序链表](148.py)
 - [Link](https://leetcode-cn.com/problems/sort-list/)
 - 给你链表的头结点 head ，请将其按 升序 排列并返回 排序后的链表 。
-- 归并排序
+- 归并排序(特别注意**快慢指针求中间位置**)
 ```python
 def merge2List(self,l1:ListNode,l2:ListNode)->ListNode:
     ret=ListNode()
@@ -327,4 +327,19 @@ def sortList(self, head: ListNode) -> ListNode:
     l1=self.sortList(head)
     l2=self.sortList(m)
     return self.merge2List(l1,l2)
+```
+
+## [反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
+- 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+- 画图!!!
+```python
+def reverseList(self, head: ListNode) -> ListNode:
+    '''反转链表'''
+    ret=None#虚节点
+    while head:
+        tmp=head.next
+        head.next=ret
+        ret=head
+        head=tmp
+    return ret
 ```
