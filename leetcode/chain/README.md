@@ -548,3 +548,18 @@ def oddEvenList(self, head: ListNode) -> ListNode:
     last_odd.next=start_even#!!!注意
     return head
 ```
+
+## [环形链表](141.py)
+- [Link](https://leetcode-cn.com/problems/linked-list-cycle/)
+- 给定一个链表，判断链表中是否有环。
+```python
+def hasCycle(self, head: ListNode) -> bool:
+    '''快慢指针'''
+    slow,fast=head,head#注意这里和查找中间位置的初始值不同  查找中间位置的fast=head.next
+    while fast and fast.next:
+        slow=slow.next
+        fast=fast.next.next
+        if slow==fast:
+            return True
+    return False
+```
