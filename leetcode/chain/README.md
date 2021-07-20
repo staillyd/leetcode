@@ -518,3 +518,33 @@ def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
         cur_B=cur_B.next if cur_B else headA
     return None
 ```
+
+## [奇偶链表](328.py)
+- [Link](https://leetcode-cn.com/problems/odd-even-linked-list/)
+- 给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。
+- 请尝试使用原地算法完成。你的算法的空间复杂度应为 O(1)，时间复杂度应为 O(nodes)，nodes 为节点总数。
+```python
+def oddEvenList(self, head: ListNode) -> ListNode:
+    '''奇偶链表
+    
+    @Note:
+        画图
+    '''
+    if head is None or head.next is None:
+        return head
+    odd=head
+    even=head.next
+    start_even=even
+    last_odd=None
+    while odd and even:
+        odd.next=even.next
+        last_odd=odd
+        odd=odd.next
+
+        even.next=odd.next if odd else None#注意
+        even=even.next
+    if last_odd.next:#奇数个
+        last_odd=last_odd.next
+    last_odd.next=start_even#!!!注意
+    return head
+```
