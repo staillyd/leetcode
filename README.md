@@ -72,6 +72,7 @@
 - [相交链表](leetcode/chain/160.py)
 - [奇偶链表](leetcode/chain/328.py)
 - [环形链表](leetcode/chain/141.py)
+- [环形链表II](leetcode/chain/142.py)
 
 # Ref
 > https://github.com/doocs/leetcode

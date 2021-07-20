@@ -563,3 +563,36 @@ def hasCycle(self, head: ListNode) -> bool:
             return True
     return False
 ```
+
+## [环形链表 II](142.py)
+- [Link](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+- 给定一个链表，返回链表开始**入环的第一个节点**。 如果链表无环，则返回 null。
+- 思路:
+  - 先利用快慢指针判断链表是否有环，没有环则直接返回 null。
+  - 若链表有环，我们分析快慢相遇时走过的距离。
+  - 对于慢指针（每次走 1 步），走过的距离为 S=X+Y ①；
+  - 快指针（每次走 2 步）走过的距离为 2S=X+Y+N(Y+Z) ②。如下图所示，其中 N 表示快指针与慢指针相遇时在环中所走过的圈数，而我们要求的环入口，也即是 X 的距离：
+  - ![](imgs/linked-list-cycle-ii.png)
+  - 根据式子 ①②，得出 X+Y=N(Y+Z) => X=(N-1)(Y+Z)+Z。
+  - 定义一个p指向head,p与slow同时慢走,当相遇时即为环的入口
+```python
+def detectCycle(self, head: ListNode) -> ListNode:
+    slow,fast=head,head
+    cycle=False
+    while fast and fast.next:
+        slow=slow.next
+        fast=fast.next.next
+
+        if slow==fast:
+            cycle=True
+            break
+    
+    if not cycle:
+        return None
+    
+    p=head
+    while p!=slow:
+        p=p.next
+        slow=slow.next
+    return slow
+```
