@@ -497,3 +497,24 @@ def isPalindrome(self, head: ListNode) -> bool:
     return True
 ```
 
+## [相交链表](160.py)
+- [Link](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)
+- 给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。
+```python
+def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+    '''判断链表是否相交
+    
+    @Note:
+        a1->a2->...None->b1->b2->...None
+        b1->b2->...None->a1->a2->...None
+        这样的总长一样,且末尾都为None.注意要有None!!
+    '''
+    cur_A=headA
+    cur_B=headB
+    while cur_A or cur_B:
+        if cur_A==cur_B:
+            return cur_B
+        cur_A=cur_A.next if cur_A else headB
+        cur_B=cur_B.next if cur_B else headA
+    return None
+```
