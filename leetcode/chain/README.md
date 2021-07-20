@@ -342,13 +342,84 @@ def reverseList(self, head: ListNode) -> ListNode:
         head.next=ret
         ret=head
         head=tmp
-    return ret
+    return ret#返回自身
 ```
 
 ## [反转链表II](92.py)
 - [Link](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
 - 给你单链表的头指针 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
 ```python
+def reverse(self,head:ListNode)->ListNode:
+    '''反转链表'''
+    ret=None
+    while head:
+        tmp=head.next
+        head.next=ret
+        ret=head
+        head=tmp
+    return ret
 
+def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
+    ret=ListNode(0,head)
+    i=0
+    last=ret
+    start,end=None,None
+    while head:#画图!!!
+        i+=1
+        if i<left:
+            last=last.next
+        if i==left:
+            start=head
+        if i==right:
+            end=head.next
+            head.next=None
+            break
+        head=head.next
+    
+    l=self.reverse(start)
+    last.next=l
+    start.next=end
+
+    return ret.next
+```
+
+## [重排链表](143.py)
+- [Link](https://leetcode-cn.com/problems/reorder-list/)
+- 给定一个单链表 L 的头节点 head ，单链表 L 表示为：
+- L0 → L1 → … → Ln-1 → Ln 
+- 请将其重新排列后变为：
+- L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …
+- 不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+- 思路:快慢指针分两半;反转右半部分;左右两链表依次相连
+```python
+def reverse(self,head:ListNode)->None:
+    ret=None
+    while head:
+        tmp=head.next
+        head.next=ret
+        ret=head
+        head=tmp
+    return ret#返回自身
+
+def reorderList(self, head: ListNode) -> None:
+    l=head
+
+    slow,fast=head,head.next#右半部分比左半部分更短，快慢指针求中间位置
+    while fast and fast.next:
+        slow=slow.next
+        fast=fast.next.next
+    m=slow.next
+    slow.next=None
+
+    m=self.reverse(m)
+    while l and m:
+        l_tmp=l.next
+        m_tmp=m.next
+
+        l.next=m
+        m.next=l_tmp
+
+        l=l_tmp
+        m=m_tmp
 
 ```
