@@ -67,6 +67,7 @@
 - [反转链表](leetcode/chain/206.py)
 - [反转链表II](leetcode/chain/92.py)
 - [重排链表](leetcode/chain/143.py)
+- [旋转链表](leetcode/chain/61.py)
 
 # Ref
 > https://github.com/doocs/leetcode
