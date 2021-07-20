@@ -329,7 +329,8 @@ def sortList(self, head: ListNode) -> ListNode:
     return self.merge2List(l1,l2)
 ```
 
-## [反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
+## [反转链表](206.py)
+- [Link](https://leetcode-cn.com/problems/reverse-linked-list/)
 - 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
 - 画图!!!
 ```python
@@ -342,4 +343,12 @@ def reverseList(self, head: ListNode) -> ListNode:
         ret=head
         head=tmp
     return ret
+```
+
+## [反转链表II](92.py)
+- [Link](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
+- 给你单链表的头指针 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
+```python
+
+
 ```
