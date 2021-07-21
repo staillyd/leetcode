@@ -74,5 +74,8 @@
 - [环形链表](leetcode/chain/141.py)
 - [环形链表II](leetcode/chain/142.py)
 
+### [二叉树](README.md)
+- [前序遍历](leetcode/tree/144.py)
+
 # Ref
 > https://github.com/doocs/leetcode
