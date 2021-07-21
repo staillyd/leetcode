@@ -38,3 +38,9 @@ def preorderTraversal_1(self, root: TreeNode) -> List[int]:
 
     return ret
 ```
+
+## [后序遍历](145.py)
+- [Link](https://leetcode-cn.com/problems/binary-tree-postorder-traversal/)
+```python
+
+```

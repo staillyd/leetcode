@@ -76,6 +76,7 @@
 
 ### [二叉树](README.md)
 - [前序遍历](leetcode/tree/144.py)
+- [后序遍历](leetcode/tree/145.py)
 
 # Ref
 > https://github.com/doocs/leetcode
