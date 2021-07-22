@@ -158,3 +158,23 @@ def isSymmetric_1(self, root: TreeNode) -> bool:
         return True
     return self.is_symmetric(root.left,root.right)
 ```
+
+## [树的子结构](26.py)
+- [Link](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/)
+- 输入两棵二叉树A和B，判断B是不是A的子结构。(约定空树不是任意一个树的子结构)
+- B是A的子结构， 即 A中有出现和B相同的结构和节点值。
+```python
+def is_contain(self,A:TreeNode,B:TreeNode)->bool:
+    '''B是否为A根节点相同的子树'''
+    if B is None:#特别注意
+        return True
+    if A and B and A.val==B.val and\
+        self.is_contain(A.left,B.left) and self.is_contain(A.right,B.right):
+        return True
+    return False
+
+def isSubStructure(self, A: TreeNode, B: TreeNode) -> bool:
+    if B is None:#None不是任何树的子树
+        return False
+    return self.is_contain(A,B) or (A is not None and (self.isSubStructure(A.left,B) or self.isSubStructure(A.right,B)))
+```
