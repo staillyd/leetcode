@@ -240,3 +240,28 @@ def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
         ret.append(t)
     return ret[::-1]
 ```
+
+## [二叉树的右视图](199.py)
+- [Link](https://leetcode-cn.com/problems/binary-tree-right-side-view/)
+- 给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。
+```python
+def rightSideView(self, root: TreeNode) -> List[int]:
+    '''层序遍历的最右侧'''
+    if root is None:
+        return []
+    q=[root]#队列
+    ret=[]
+    while q:
+        size=len(q)
+        for i in range(size):
+            node=q.pop(0)
+
+            if i==size-1:
+                ret.append(node.val)
+
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+    return ret
+```
