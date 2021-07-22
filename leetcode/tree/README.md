@@ -112,3 +112,49 @@ def inorderTraversal_1(self, root: TreeNode) -> List[int]:
     ret.extend(r)
     return ret
 ```
+
+**前序、中序、后序非递归:树从根开始，栈存到根，然后开始弹出，然后再存剩余的。**
+
+## [对称二叉树](101.py)
+- [Link](https://leetcode-cn.com/problems/symmetric-tree/)
+- 给定一个二叉树，检查它是否是镜像对称的
+- **非递归,从root开始,把比较顺序写下,然后考虑如何用队列或栈实现这个顺序**
+```python
+def isSymmetric(self, root: TreeNode) -> bool:
+    '''非递归,从root开始,把比较顺序写下,然后考虑如何用队列或栈实现这个顺序'''
+    if root is None:
+        return True
+    s=[root.left,root.right]
+    while s:
+        node1=s.pop()
+        node2=s.pop()
+        if node1 is None and node2 is None:
+            pass
+        elif (node1 and node2 is None) or (node2 and node1 is None):
+            return False
+        else:
+            if node1.val !=node2.val:
+                return False
+            s.append(node1.left)
+            s.append(node2.right)
+            s.append(node1.right)
+            s.append(node2.left)
+    return True
+
+def is_symmetric(self, left:TreeNode ,right:TreeNode)->bool:
+    '''左树是否镜像于右树'''
+    if left is None and right is None:
+        return True
+    
+    if left is not None and right is not None and left.val ==right.val and \
+        self.is_symmetric(left.left,right.right) and self.is_symmetric(left.right,right.left):
+        return True
+    
+    return False
+
+def isSymmetric_1(self, root: TreeNode) -> bool:
+    '''递归'''
+    if root is None:
+        return True
+    return self.is_symmetric(root.left,root.right)
+```

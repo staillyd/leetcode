@@ -78,6 +78,7 @@
 - [前序遍历](leetcode/tree/144.py)
 - [后序遍历](leetcode/tree/145.py)
 - [中序遍历](leetcode/tree/94.py)
+- [对称二叉树](leetcode/tree/101.py)
 
 # Ref
 > https://github.com/doocs/leetcode
