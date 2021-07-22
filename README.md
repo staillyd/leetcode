@@ -84,6 +84,7 @@
 - [层序遍历](leetcode/tree/102.py)
 - [层序遍历II](leetcode/tree/107.py)
 - [二叉树的右视图](leetcode/tree/199.py)
+- [二叉树的最大深度](leetcode/tree/104.py)
 
 # Ref
 > https://github.com/doocs/leetcode

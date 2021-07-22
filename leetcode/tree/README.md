@@ -265,3 +265,12 @@ def rightSideView(self, root: TreeNode) -> List[int]:
                 q.append(node.right)
     return ret
 ```
+
+## [树的最大深度](104.py)
+```python
+def maxDepth(self, root: TreeNode) -> int:
+    '''树的最大深度,递归。层次遍历也行'''
+    if root is None:
+        return 0
+    return max(self.maxDepth(root.left),self.maxDepth(root.right))+1
+```
