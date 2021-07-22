@@ -215,3 +215,28 @@ def levelOrder(self, root: TreeNode) -> List[List[int]]:
         ret.append(t)
     return ret
 ```
+
+## [层序遍历II](107.py)
+- [Link](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/)
+- 从底向上的层序
+```python
+def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+    '''层次遍历的逆序'''
+    if root is None:
+        return []
+    q=[root]
+    ret=[]
+    while q:
+        size=len(q)# 当前层节点的个数
+        t=[]
+        for _ in range(size):
+            node=q.pop(0)
+            t.append(node.val)
+
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+        ret.append(t)
+    return ret[::-1]
+```
