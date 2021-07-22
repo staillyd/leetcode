@@ -113,7 +113,9 @@ def inorderTraversal_1(self, root: TreeNode) -> List[int]:
     return ret
 ```
 
-**前序、中序、后序非递归:树从根开始，栈存到根，然后开始弹出，然后再存剩余的。**
+1. **前序、中序、后序非递归:树从根开始，栈存到根，然后开始弹出，然后再存剩余的。**
+2. **非递归,从root开始,把比较顺序写下,然后考虑如何用队列或栈实现这个顺序**
+3. **画树，一般考虑1～3层递归即可**
 
 ## [对称二叉树](101.py)
 - [Link](https://leetcode-cn.com/problems/symmetric-tree/)
@@ -273,4 +275,18 @@ def maxDepth(self, root: TreeNode) -> int:
     if root is None:
         return 0
     return max(self.maxDepth(root.left),self.maxDepth(root.right))+1
+```
+
+**画树，一般考虑1～3层递归即可**
+
+## [树的最小深度](111.py)
+```python
+def minDepth(self, root: TreeNode) -> int:
+    if root is None:
+        return 0
+    if root.left is not None and root.right is None:#较高一层的值,注意和最大深度的区别,画1～3层的树
+        return 1+self.minDepth(root.left)
+    if root.right is not None and root.left is None:
+        return 1+self.minDepth(root.right)
+    return 1+min(self.minDepth(root.left),self.minDepth(root.right))
 ```
