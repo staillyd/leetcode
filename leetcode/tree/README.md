@@ -178,3 +178,16 @@ def isSubStructure(self, A: TreeNode, B: TreeNode) -> bool:
         return False
     return self.is_contain(A,B) or (A is not None and (self.isSubStructure(A.left,B) or self.isSubStructure(A.right,B)))
 ```
+
+## [翻转二叉树](226.py)
+- [Link](https://leetcode-cn.com/problems/invert-binary-tree/)
+```python
+def invertTree(self, root: TreeNode) -> TreeNode:
+    '''翻转二叉树'''
+    if root is None:
+        return root
+    root.left,root.right=root.right,root.left
+    self.invertTree(root.left)
+    self.invertTree(root.right)
+    return root
+```
