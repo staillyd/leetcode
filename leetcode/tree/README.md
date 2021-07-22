@@ -118,6 +118,8 @@ def inorderTraversal_1(self, root: TreeNode) -> List[int]:
 3. **画树，一般考虑1～3层递归即可**
 4. **深度:递归、stack**
 5. **广度:queue**
+6. **是否存在、判断:递归**
+7. **所有路径:dfs(递归)+路径记录**
 
 ## [对称二叉树](101.py)
 - [Link](https://leetcode-cn.com/problems/symmetric-tree/)
@@ -311,5 +313,42 @@ def binaryTreePaths(self, root: TreeNode) -> List[str]:
         path.pop()# 不pop的话path其实是前序遍历
     
     dfs(root)
+    return ret
+```
+
+## [路径总和](112.py)
+- [Link](https://leetcode-cn.com/problems/path-sum/)
+- 给你二叉树的根节点 root 和一个表示目标和的整数 targetSum ，判断该树中是否存在 **根节点到叶子节点** 的路径，这条路径上所有节点值相加等于目标和 targetSum 。
+- 叶子节点 是指没有子节点的节点。
+```python
+def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:
+    if root is None:
+        return False
+    if root.val==targetSum:
+        return True
+    return self.hasPathSum(root.left,targetSum-root.val) or self.hasPathSum(root.right,targetSum-root.val)
+```
+
+## [路径总和II](113.py)
+- [Link](https://leetcode-cn.com/problems/path-sum-ii/)
+- 给你二叉树的根节点 root 和一个整数目标和 targetSum ，找出所有 **从根节点到叶子节点** 路径总和等于给定目标和的路径。
+- 叶子节点 是指没有子节点的节点。
+```python
+def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
+    '''dfs+路径记录'''
+    path=[]
+    ret=[]
+    def dfs(root,targetSum):
+        if root is None:
+            return
+        
+        path.append(root.val)
+        if root.val==targetSum and root.left is None and root.right is None:
+            ret.append(path.copy())#!!!!拷贝
+
+        dfs(root.left,targetSum-root.val)
+        dfs(root.right,targetSum-root.val)
+        path.pop()
+    dfs(root,targetSum)
     return ret
 ```

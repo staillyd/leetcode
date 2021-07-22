@@ -87,6 +87,8 @@
 - [二叉树的最大深度](leetcode/tree/104.py)
 - [二叉树的最小深度](leetcode/tree/111.py)
 - [二叉树的所有路径](leetcode/tree/257.py)
+- [路径总和](leetcode/tree/112.py)
+- [路径总和II](leetcode/tree/113.py)
 
 # Ref
 > https://github.com/doocs/leetcode
