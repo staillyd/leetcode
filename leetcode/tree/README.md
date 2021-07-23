@@ -462,3 +462,18 @@ class BSTIterator:
     def hasNext(self) -> bool:
         return self.cur<len(self.inorder_list)
 ```
+
+## [二叉搜索树的最近公共祖先](235.py)
+- [Link](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+- 1. 找到一条到节点1路径，找到一条节点2路径，顺序查找直到第一个不相等的数
+- 2. **二叉查找树:<,=,>   从顶向下查找第一个在[p,q]之间的节点**
+```python
+def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    '''二叉查找树:<,=,>   从顶向下查找第一个在[p,q]之间的节点'''
+    if root.val>p.val and root.val>q.val:
+        return self.lowestCommonAncestor(root.left,p,q)
+    elif root.val<p.val and root.val<q.val:
+        return self.lowestCommonAncestor(root.right,p,q)
+    else:
+        return root
+```

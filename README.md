@@ -93,6 +93,7 @@
 - [从中序与后序遍历序列构造二叉树](leetcode/tree/106.py)
 - [二叉搜索树的后序遍历序列](leetcode/tree/33.py)
 - [二叉搜索树迭代器](leetcode/tree/173.py)
+- [二叉搜索树的最近公共祖先](leetcode/tree/235.py)
 
 # Ref
 > https://github.com/doocs/leetcode
