@@ -91,6 +91,7 @@
 - [路径总和II](leetcode/tree/113.py)
 - [从前序与中序遍历序列构造二叉树](leetcode/tree/105.py)
 - [从中序与后序遍历序列构造二叉树](leetcode/tree/106.py)
+- [二叉搜索树的后序遍历序列](leetcode/tree/33.py)
 
 # Ref
 > https://github.com/doocs/leetcode

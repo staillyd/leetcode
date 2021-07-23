@@ -406,3 +406,28 @@ def buildTree_1(self, inorder: List[int], postorder: List[int]) -> TreeNode:
     right_postorder=postorder[i:len(postorder)-1]#左闭右开!!
     return TreeNode(root_val,self.buildTree(left_inorder,left_postorder),self.buildTree(right_inorder,right_postorder))
 ```
+
+## [二叉搜索树的后序遍历序列](33.py)
+- [Link](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/submissions/)
+```python
+def verifyPostorder(self, postorder: List[int]) -> bool:
+    '''左右根
+    
+    @Note:
+        <,>,=
+    '''
+    if len(postorder)==0:
+        return True
+    root_val=postorder[-1]
+    right_start=len(postorder)-1
+    for i in range(len(postorder)-1):
+        if postorder[i]>root_val:
+            right_start=i
+            break
+    left_postorder=postorder[:right_start]
+    right_postorder=postorder[right_start:len(postorder)-1]
+    for i in range(right_start,len(postorder)-1):
+        if postorder[i]<root_val:
+            return False
+    return self.verifyPostorder(left_postorder) and self.verifyPostorder(right_postorder)
+```
