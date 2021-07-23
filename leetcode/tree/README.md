@@ -431,3 +431,34 @@ def verifyPostorder(self, postorder: List[int]) -> bool:
             return False
     return self.verifyPostorder(left_postorder) and self.verifyPostorder(right_postorder)
 ```
+
+## [二叉搜索树迭代器](173.py)
+- [Link](https://leetcode-cn.com/problems/binary-search-tree-iterator/)
+- 实现一个二叉搜索树迭代器类BSTIterator ，表示一个按中序遍历二叉搜索树（BST）的迭代器
+```python
+class BSTIterator:
+    def __init__(self, root: TreeNode):
+        def inorder(root)-> List:
+            if root is None:
+                return []
+            l=inorder(root.left)
+            r=inorder(root.right)
+
+            ret=[]
+            ret.extend(l)
+            ret.append(root.val)
+            ret.extend(r)
+
+            return ret
+        
+        self.inorder_list=inorder(root)
+        self.cur=0
+
+    def next(self) -> int:
+        ret=self.inorder_list[self.cur]
+        self.cur+=1
+        return ret
+
+    def hasNext(self) -> bool:
+        return self.cur<len(self.inorder_list)
+```
