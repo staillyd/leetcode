@@ -352,3 +352,23 @@ def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
     dfs(root,targetSum)
     return ret
 ```
+
+## [从前序与中序遍历序列构造二叉树](105.py)
+- [Link](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+- 前序:根左右
+- 中序:左根右
+- **前序第一个为根节点,在中序查找根节点位置,左侧为左树,右侧为右树,根据左右树个数将前序分割,得到左右子树的前序**
+```python
+def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+    '''可以考虑传递下标，减少数组拷贝的时间'''
+    if len(preorder)==0:
+        return None
+    root_val=preorder[0]
+    i=inorder.index(root_val)
+    left_inorder=inorder[:i]
+    right_inorder=inorder[i+1:]
+    left_preorder=preorder[1:1+i]
+    right_preorder=preorder[1+i:]
+
+    return TreeNode(root_val,self.buildTree(left_preorder,left_inorder),self.buildTree(right_preorder,right_inorder))
+```
