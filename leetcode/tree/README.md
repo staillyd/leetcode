@@ -113,6 +113,8 @@ def inorderTraversal_1(self, root: TreeNode) -> List[int]:
     return ret
 ```
 
+![](imgs/树的遍历结果.png)
+
 1. **前序、中序、后序非递归:树从根开始，栈存到根，然后开始弹出，然后再存剩余的。**
 2. **非递归,从root开始,把比较顺序写下,然后考虑如何用队列或栈实现这个顺序**
 3. **画树，一般考虑1～3层递归即可**
@@ -120,6 +122,7 @@ def inorderTraversal_1(self, root: TreeNode) -> List[int]:
 5. **广度:queue**
 6. **是否存在、判断:递归**
 7. **所有路径:dfs(递归)+路径记录**
+8. **递归看成:左子树也这么做,右子树也这么做,在做完之后考虑root、左子树结果、右子树结果进行逻辑联系**
 
 ## [对称二叉树](101.py)
 - [Link](https://leetcode-cn.com/problems/symmetric-tree/)
@@ -506,3 +509,26 @@ def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -
     return ret_node
 ```
 
+## [将二叉搜索树转换为单链表](17.12.py)
+- [Link](https://leetcode-cn.com/problems/binode-lcci/)
+- **递归看成:左子树也这么做,右子树也这么做,在做完之后考虑root、左子树结果、右子树结果进行逻辑联系**
+```python
+def convertBiNode(self, root: TreeNode) -> TreeNode:
+    if root is None:
+        return None
+    
+    l=self.convertBiNode(root.left)#左子树也这么做，返回左子树结果
+    r=self.convertBiNode(root.right)#右子树也这么做，返回右子树结果
+
+    ret=l
+    while l and l.right:
+        l=l.right
+    
+    if l:
+        l.right=root
+    else:
+        ret=root
+    root.left=None
+    root.right=r
+    return ret
+```
