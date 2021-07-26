@@ -123,6 +123,7 @@ def inorderTraversal_1(self, root: TreeNode) -> List[int]:
 6. **是否存在、判断:递归**
 7. **所有路径:dfs(递归)+路径记录**
 8. **递归看成:左子树也这么做,右子树也这么做,在做完之后考虑root、左子树结果、右子树结果进行逻辑联系**
+9. **一些题目可以看成中序遍历的变种,进行中序遍历，记录头节点、上一节点指针，然后进行操作**
 
 ## [对称二叉树](101.py)
 - [Link](https://leetcode-cn.com/problems/symmetric-tree/)
@@ -512,7 +513,26 @@ def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -
 ## [将二叉搜索树转换为单链表](17.12.py)
 - [Link](https://leetcode-cn.com/problems/binode-lcci/)
 - **递归看成:左子树也这么做,右子树也这么做,在做完之后考虑root、左子树结果、右子树结果进行逻辑联系**
+- **一些题目可以看成中序遍历的变种,进行中序遍历，记录头节点、上一节点指针，然后进行操作**
 ```python
+def convertBiNode(self, root: TreeNode) -> TreeNode:
+    '''中序遍历:头节点、上一节点指针'''
+    def dfs(root):
+        if root is None:
+            return
+        dfs(root.left)
+        if self.head is None:
+            self.head=root#第一次调用的地方是头节点
+        else:
+            self.pre.right=root
+        root.left=None
+        self.pre=root
+        dfs(root.right)
+    self.head=None
+    self.pre=None
+    dfs(root)
+    return self.head
+
 def convertBiNode(self, root: TreeNode) -> TreeNode:
     if root is None:
         return None
@@ -531,4 +551,31 @@ def convertBiNode(self, root: TreeNode) -> TreeNode:
     root.left=None
     root.right=r
     return ret
+```
+
+## [二叉搜索树与双向链表](426.py)
+- [Link](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/)
+- ~~递归看成:左子树也这么做,右子树也这么做,在做完之后考虑root、左子树结果、右子树结果进行逻辑联系.~~
+- 中序遍历,头节点、上一节点
+```python
+def treeToDoublyList(self, root: 'Node') -> 'Node':
+    def dfs(root):
+        '''中序'''
+        if root is None:
+            return None
+        
+        dfs(root.left)
+        if self.head is None:
+            self.head=root#头节点
+        else:
+            self.pre.right,root.left=root,self.pre
+        self.pre=root#上一节点
+        dfs(root.right)
+    
+    self.pre=None
+    self.head=None
+    dfs(root)
+    if self.head:
+        self.head.left,self.pre.right=self.pre,self.head
+    return self.head
 ```
