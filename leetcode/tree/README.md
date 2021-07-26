@@ -579,3 +579,29 @@ def treeToDoublyList(self, root: 'Node') -> 'Node':
         self.head.left,self.pre.right=self.pre,self.head
     return self.head
 ```
+
+## [填充每个节点的下一个右侧节点指针](116.py)
+- [Link](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/)
+- 层序遍历
+```python
+def connect(self, root: 'Node') -> 'Node':
+    if root is None:
+        return None
+    
+    q=[root]
+    while q:
+        size=len(q)
+        last=None
+        for _ in range(size):
+            node=q.pop(0)
+            if last:
+                last.next=node
+            last=node
+
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+    
+    return root
+```
