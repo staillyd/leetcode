@@ -102,6 +102,7 @@
 ## [数学](README.md)
 - [只出现一次的数字](leetcode/math/136.py)
 - [只出现一次的数字II](leetcode/math/137.py)
+- [计数质数](leetcode/math/204.py)
 
 ## [回溯](leetcode/backdate/README.md)
 - [子集](leetcode/backtrack/78.py)
