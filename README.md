@@ -99,10 +99,13 @@
 - [将二叉搜索树转化为排序的双向链表](leetcode/tree/426.py)
 - [填充每个节点的下一个右侧节点指针](leetcode/tree/116.py)
 
-## [数学](README.md)
+## [数学](leetcode/math/README.md)
 - [只出现一次的数字](leetcode/math/136.py)
 - [只出现一次的数字II](leetcode/math/137.py)
 - [计数质数](leetcode/math/204.py)
+
+## [栈和队列](leetcode/queue_stack/README.md)
+- [有效的括号](leetcode/queue_stack/20.py)
 
 ## [回溯](leetcode/backdate/README.md)
 - [子集](leetcode/backtrack/78.py)
