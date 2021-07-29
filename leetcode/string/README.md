@@ -2,7 +2,7 @@
 ## [无重复字符的最长子串](3.py)
 - [Link](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
 - 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度
-- 滑动窗口法!!!  重点在于滑动的流程,这个流程需要思考
+- **滑动窗口法**!!!  重点在于滑动的流程,这个流程需要思考
 - 定义num_count字典:保存字符出现次数,保证出现次数都<=1,
 ```python
 def lengthOfLongestSubstring(self, s: str) -> int:
