@@ -97,6 +97,7 @@ def ping(self, t: int) -> int:
 ## [每日温度](739.py)
 - [Link](https://leetcode-cn.com/problems/daily-temperatures/)
 - 请根据每日 气温 列表 temperatures ，请计算在每一天需要等几天才会有更高的温度。如果气温在这之后都不会升高，请在该位置用 0 来代替。
+- 单调栈!!!
 ```python
 def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
     '''栈递减,类似滑动窗口,满足条件弹出,不然往里加'''
@@ -108,4 +109,36 @@ def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
             ret[i]=j-i
         s.append(j)
     return ret
+```
+
+## [柱状图中最大的矩形](84.py)
+- [Link](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
+- 给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。求在该柱状图中，能够勾勒出来的矩形的最大面积。
+- 单调栈!!!
+```python
+def largestRectangleArea(self, heights: List[int]) -> int:
+    s=[]#存索引
+    max_area=0
+    for i in range(len(heights)):
+        while s and heights[s[-1]]>heights[i]:#满足条件则弹出,直到不满足条件
+            cur=s.pop()
+            l=s[-1]+1 if len(s)!=0 else 0
+            max_area=max(max_area,heights[cur]*(i-1-l+1))
+        s.append(i)
+    while s:#当栈里仍然存在数据时
+        cur=s.pop()
+        l=s[-1]+1 if len(s)!=0 else 0
+        max_area=max(max_area,heights[cur]*(len(heights)-1-l+1))
+    return max_area
+
+def largestRectangleArea_all(self, heights: List[int]) -> int:
+    max_area=0
+    for i in range(len(heights)):
+        l,r=i,i
+        while r<len(heights) and heights[r]>=heights[i]:
+            r+=1
+        while l>=0 and heights[l]>=heights[i]:
+            l-=1
+        max_area=max(max_area,heights[i]*(r-l-1))
+    return max_area
 ```
