@@ -111,6 +111,7 @@
 - [接雨水](leetcode/tree/42.py)
 - [基本计算器](leetcode/queue_stack/227.py)
 - [下一个更大元素 I](leetcode/queue_stack/469.py)
+- [下一个更大元素 II](leetcode/queue_stack/503.py)
 
 ## [回溯](leetcode/backdate/README.md)
 - [子集](leetcode/backtrack/78.py)

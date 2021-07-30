@@ -231,3 +231,20 @@ def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
             ret[i]=dic[num]
     return ret
 ```
+
+## [下一个更大元素 II](503.py)
+- [Link](https://leetcode-cn.com/problems/next-greater-element-ii/)
+- 给定一个循环数组（最后一个元素的下一个元素是数组的第一个元素），输出每个元素的下一个更大元素。数字 x 的下一个更大的元素是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 -1。
+- 单调栈+循环数组(自身+自身,后面的用i%len索引)
+```python
+def nextGreaterElements(self, nums: List[int]) -> List[int]:
+    s=[]
+    ret=[-1]*len(nums)
+    for i in range(2*len(nums)):#自身+自身  循环数组
+        real_i=i%len(nums)# 用i%len索引
+        while s and nums[s[-1]]<nums[real_i]:
+            pop_i=s.pop()
+            ret[pop_i]=nums[real_i]
+        s.append(real_i)
+    return ret
+```
