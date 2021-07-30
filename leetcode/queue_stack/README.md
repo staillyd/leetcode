@@ -47,9 +47,9 @@ def isValid(self, s: str) -> bool:
 - 请定义一个队列并实现函数 max_value 得到队列里的最大值，要求函数max_value、push_back 和 pop_front 的均摊时间复杂度都是O(1)。
 - 若队列为空，pop_front 和 max_value 需要返回 -1
 
-| max       | 7   | 7   | 4   | 3   |
-| --------- | --- | --- | --- | --- |
-| queue     | 6   | 7   | 4   | 3   |
+| max   | 7   | 7   | 4   | 3   |
+| ----- | --- | --- | --- | --- |
+| queue | 6   | 7   | 4   | 3   |
 
 
 - 添加一个辅助队列  [7,4,3]
@@ -94,10 +94,42 @@ def ping(self, t: int) -> int:
     return len(self.q)
 ```
 
+## !!!单调栈!!!
+- **使单调增栈**,(保证栈中元素为递增的),当当前元素<栈顶时,一直弹出元素.弹出元素时可以得到
+  1. 连续>=弹出元素的右边界(当前元素索引-1,遍历完,栈不为空则是len-1)
+  2. 连续>弹出元素的左边界(弹出元素后的栈顶元素索引+1,没有栈顶则是0)
+  3. 在1向右第一个<的右边界
+  4. 在2向左第一个<=的左边界
+
+
+- **使单调减栈**,(保证栈内元素为递减的),当当前元素>栈顶时,一直弹出元素.弹出元素时可以得到
+  1. 连续<=弹出元素的右边界(当前元素索引-1,遍历完,栈不为空则是len-1)
+  2. 连续<弹出元素的左边界(弹出元素后的栈顶元素索引+1,没有栈顶则是0)
+  3. 在1向右第一个>的右边界
+  4. 在2向左第一个>=的左边界
+
+```python
+def single_stack(self, height: List[int]) -> int:
+    s=[]
+    for i,h in enumerate(height):
+        while s and h<=height[s[-1]]:# <=可以换符号: <、>、>=
+            pop_idx=s.pop()
+            r=i-1
+            l=s[-1]+1 if len(s)!=0 else 0
+            print(pop_idx,height[pop_idx],l,r)
+        s.append(i)
+    while s:
+        pop_idx=s.pop()
+        r=len(height)-1
+        l=s[-1]+1 if len(s)!=0 else 0
+        print(pop_idx,height[pop_idx],l,r)
+```
+![](imgs/单调栈.png)
+
 ## [每日温度](739.py)
 - [Link](https://leetcode-cn.com/problems/daily-temperatures/)
 - 请根据每日 气温 列表 temperatures ，请计算在每一天需要等几天才会有更高的温度。如果气温在这之后都不会升高，请在该位置用 0 来代替。
-- 单调栈!!!
+- 单调减栈!!!
 ```python
 def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
     '''栈递减,类似滑动窗口,满足条件弹出,不然往里加'''
@@ -114,7 +146,7 @@ def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
 ## [柱状图中最大的矩形](84.py)
 - [Link](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
 - 给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。求在该柱状图中，能够勾勒出来的矩形的最大面积。
-- 单调栈!!!
+- 单调增栈!!!
 ```python
 def largestRectangleArea(self, heights: List[int]) -> int:
     s=[]#存索引

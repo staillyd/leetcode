@@ -108,6 +108,7 @@
 - [有效的括号](leetcode/queue_stack/20.py)
 - [每日温度](leetcode/queue_stack/739.py)
 - [柱状图中最大的矩形](leetcode/queue_stack/84.py)
+- [接雨水](leetcode/tree/42.py)
 
 ## [回溯](leetcode/backdate/README.md)
 - [子集](leetcode/backtrack/78.py)

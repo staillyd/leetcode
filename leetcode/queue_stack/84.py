@@ -21,11 +21,11 @@ class Solution:
         max_area=0
         for i in range(len(heights)):
             l,r=i,i
-            while r<len(heights) and heights[r]>=heights[i]:
+            while r<len(heights) and heights[r]>=heights[i]:#往右找>当前元素的右边界
                 r+=1
-            while l>=0 and heights[l]>=heights[i]:
+            while l>=0 and heights[l]>=heights[i]:#往左找>当前元素的左边界
                 l-=1
-            max_area=max(max_area,heights[i]*(r-l-1))
+            max_area=max(max_area,heights[i]*(r-1-(l+1)+1))
         return max_area
     
 if __name__=='__main__':
