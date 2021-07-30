@@ -60,3 +60,29 @@ def subsets(self, nums: List[int]) -> List[List[int]]:
     return ret
 ```
 
+## [子集II](90.py)
+- [Link](https://leetcode-cn.com/problems/subsets-ii/)
+- 给你一个整数数组 nums ，其中可能包含重复元素，请你返回该数组所有可能的子集（幂集）。解集 不能 包含重复的子集。返回的解集中，子集可以按 任意顺序 排列。
+- ![](imgs/子集问题递归树.png)
+- 先排序
+- 再剪枝(选择哪些不进行输出)
+- ![](imgs/子集II剪枝.png)
+- 去除当前选择列表中，与上一个数重复的那个数，引出的分支
+```python
+def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+    def back_track(nums,i_start):
+        for i in range(i_start,len(nums)):
+            if i>i_start and nums[i]==nums[i-1]:#剪枝
+                continue
+                
+            path.append(nums[i])
+            ret.append(path.copy())
+            back_track(nums,i+1)
+            path.pop()
+    
+    nums=sorted(nums)
+    ret=[[]]
+    path=[]
+    back_track(nums,0)
+    return ret
+```
