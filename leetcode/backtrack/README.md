@@ -40,6 +40,8 @@ def binaryTreePaths(self, root: TreeNode) -> List[str]:
     return ret
 ```
 
+**子集、组合类问题，关键是用一个 start 参数来控制选择列表！！**
+
 ## [子集](78.py)
 - [Link](https://leetcode-cn.com/problems/subsets/)
 - 给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。
@@ -84,5 +86,32 @@ def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
     ret=[[]]
     path=[]
     back_track(nums,0)
+    return ret
+```
+
+## [组合总和](39.py)
+- [Link](https://leetcode-cn.com/problems/combination-sum/)
+- 给定一个无重复元素的正整数数组 candidates 和一个正整数 target ，找出 candidates 中所有可以使数字和为目标数 target 的唯一组合。
+- ![](imgs/组合之和.png)
+```python
+def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    ret=[]
+    path=[]
+
+    def back_track(nums,i_start,sum_):
+        for i in range(i_start,len(nums)):
+            if sum_+nums[i]>target:#剪枝
+                continue
+
+            sum_+=nums[i]
+            path.append(nums[i])
+            if sum_==target:#如果满足条件,则append
+                ret.append(path.copy())
+            
+            back_track(nums,i,sum_)#可以重复利用,i
+            sum_-=nums[i]#回退状态
+            path.pop()
+    
+    back_track(candidates,0,0)
     return ret
 ```
