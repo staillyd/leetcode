@@ -174,3 +174,38 @@ def largestRectangleArea_all(self, heights: List[int]) -> int:
         max_area=max(max_area,heights[i]*(r-l-1))
     return max_area
 ```
+
+## [基本计算器 II](227.py)
+- [Link](https://leetcode-cn.com/problems/basic-calculator-ii/)
+- 给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。整数除法仅保留整数部分。s 由整数和算符 ('+', '-', '*', '/') 组成，中间由一些空格隔开
+- 遍历字符串 s，并用变量 preSign 记录每个数字之前的运算符，对于第一个数字，其之前的运算符视为加号。每次遍历到数字末尾时，根据 preSign 来决定计算方式：
+  1. 加号：将数字压入栈；
+  2. 减号：将数字的相反数压入栈；
+  3. 乘除号：计算数字与栈顶元素，并将栈顶元素替换为计算结果。
+- 注意最后一个数字也要进行运算,注意空格忽略不是最后一位的空
+- 注意不能用//,//为向下取整,如果前面为负数-3//2=-2
+```python
+def calculate(self, s: str) -> int:
+    pre_sign='+'
+    stack=[]
+    num=0
+    for i,this_c in enumerate(s):
+        if this_c.isdigit():
+            num=10*num+int(this_c)
+        if (not this_c.isdigit() and this_c!=' ') or i==len(s)-1:#注意最后一个数字也要进行运算,注意空格忽略不是最后一位的空格             
+            if pre_sign=='+':
+                stack.append(num)
+            elif pre_sign=='-':
+                stack.append(-num)
+            elif pre_sign=='*':
+                stack.append(stack.pop()*num)
+            elif pre_sign=='/':
+                stack.append(int(stack.pop()/num))#注意不能用//,//为向下取整,如果前面为负数-3//2=-2
+            
+            pre_sign=this_c
+            num=0
+    ret=0#对栈内剩余结果计算结果
+    while stack:
+        ret+=stack.pop()
+    return ret
+```
