@@ -118,6 +118,7 @@
 - [子集II](leetcode/backtrack/90.py)
 - [组合之和](leetcode/backtrack/39.py)
 - [8皇后](leetcode/backtrack/8.12.py)
+- [字符串的排列](leetcode/backtrack/38.py)
 
 # Ref
 > https://github.com/doocs/leetcode

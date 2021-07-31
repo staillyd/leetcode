@@ -32,6 +32,7 @@ class Solution:
             if row==n:#遍历完所有行之后
                 out=[''.join(c) for c in chessboard]
                 ret.append(out)
+                return
             for i in range(n):
                 if valid(row,i):
                     chessboard[row][i]='Q'

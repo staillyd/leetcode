@@ -149,11 +149,46 @@ def solveNQueens(self, n: int) -> List[List[str]]:
         if row==n:#遍历完所有行之后
             out=[''.join(c) for c in chessboard]
             ret.append(out)
+            return
         for i in range(n):
             if valid(row,i):
                 chessboard[row][i]='Q'
                 back_track(row+1)
                 chessboard[row][i]='.'
     back_track(0)
+    return ret
+```
+
+## [字符串的排列](38.py)
+- [Link](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
+- 输入一个字符串，打印出该字符串中字符的所有排列。
+- ![](imgs/排列.png)
+- 排序
+- used数组来记录使用过的数字
+- 去重剪枝:未使用的数字与前一个未使用的相等!
+```python
+def permutation(self, s: str) -> List[str]:
+    ret=[]
+    path=[]
+    used=[False for i in range(len(s))]
+
+    s=sorted(s)#排序!!!
+
+    def back_track():
+        if len(path)==len(s):
+            ret.append(''.join(path))
+            return
+        for i in range(len(s)):
+            if used[i]:
+                continue
+            
+            if i>0 and s[i]==s[i-1] and not used[i-1]:#剪枝
+                continue
+            used[i]=True
+            path.append(s[i])
+            back_track()
+            used[i]=False
+            path.pop()
+    back_track()
     return ret
 ```
