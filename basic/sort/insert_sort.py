@@ -10,14 +10,19 @@ class Insert_Sort(object):
         '''
         for i in range(1,len(arr)):
             num=arr[i]
-            for j in range(i)[::-1]:#i-1->0
-                if arr[j]>num:
-                    arr[j+1]=arr[j]#索引j->j+1,j+1是当前所需要赋值的索引
-                    if j==0:#!!!注意边界条件!!!
-                        arr[j]=num
-                else:
-                    arr[j+1]=num
-                    break
+            # for j in range(i)[::-1]:#i-1->0
+            #     if arr[j]>num:
+            #         arr[j+1]=arr[j]#索引j->j+1,j+1是当前所需要赋值的索引
+            #         if j==0:#!!!注意边界条件!!!
+            #             arr[j]=num
+            #     else:
+            #         arr[j+1]=num
+            #         break
+            j=i-1
+            while j>=0 and arr[j]>num:
+                arr[j+1]=arr[j]
+                j-=1
+            arr[j+1]=num
 
 
 if __name__=='__main__':
