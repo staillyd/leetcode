@@ -7,6 +7,7 @@
 - [选择排序](basic/sort/select_sort.py)
 - [归并排序](basic/sort/merge_sort.py)
 - [快速排序](basic/sort/quick_sort.py)
+- [堆排序](basic/sort/heap_sort.py)
 
 ### [查找算法](basic/search/README.md)
 - [二分查找](basic/search/binary_search.py)

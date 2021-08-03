@@ -1,5 +1,5 @@
 # 数学
-## [整数转罗马数字]
+## 整数转罗马数字
 - [Link](https://leetcode-cn.com/problems/integer-to-roman/)
 - 思路:num_roman,来了一个数从字典中剪去可能的最大数
 ```python
@@ -13,7 +13,7 @@ def intToRoman(self, num: int) -> str:
     return ''.join(res)
 ```
 
-## [罗马数字转整数]
+## 罗马数字转整数
 - [Link](https://leetcode-cn.com/problems/roman-to-integer/)
 - 思路:roman_num,来了一个罗马数从字符中删去可能的最大数对应的字符
 ```python
