@@ -121,5 +121,8 @@
 - [8皇后](leetcode/backtrack/8.12.py)
 - [字符串的排列](leetcode/backtrack/38.py)
 
+## [动态规划](README.md)
+- [最长公共子序列](leetcode/dp/1143.py)
+
 # Ref
 > https://github.com/doocs/leetcode
