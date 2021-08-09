@@ -120,6 +120,7 @@
 - [组合之和](leetcode/backtrack/39.py)
 - [8皇后](leetcode/backtrack/8.12.py)
 - [字符串的排列](leetcode/backtrack/38.py)
+- [解数独](leetcode/backtrack/37.py)
 
 ## [动态规划](leetcode/dp/README.md)
 - [最长公共子序列](leetcode/dp/1143.py)
