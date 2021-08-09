@@ -114,15 +114,19 @@
 - [下一个更大元素 I](leetcode/queue_stack/469.py)
 - [下一个更大元素 II](leetcode/queue_stack/503.py)
 
-## [回溯](leetcode/backdate/README.md)
+## [回溯](leetcode/backtrack/README.md)
 - [子集](leetcode/backtrack/78.py)
 - [子集II](leetcode/backtrack/90.py)
 - [组合之和](leetcode/backtrack/39.py)
 - [8皇后](leetcode/backtrack/8.12.py)
 - [字符串的排列](leetcode/backtrack/38.py)
 
-## [动态规划](README.md)
+## [动态规划](leetcode/dp/README.md)
 - [最长公共子序列](leetcode/dp/1143.py)
+- [不同路径](leetcode/dp/62.py)
+
+## [贪心](leetcode/greedy/README.md)
+- [分发饼干](leetcode/chain/445.py)
 
 # Ref
 > https://github.com/doocs/leetcode
