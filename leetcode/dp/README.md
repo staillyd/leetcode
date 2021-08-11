@@ -64,6 +64,42 @@ def uniquePaths(self, m: int, n: int) -> int:
     return dp[m][n]
 ```
 
+## [不同路径 II](63.py)
+- [Link](https://leetcode-cn.com/problems/unique-paths-ii/)
+- 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
+- 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
+- 现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？
+- 设$dp[i][j]$为到达 i, j 最多路径
+$\begin{aligned}
+    dp[i][j]&=dp[i-1][j]+dp[i][j-1]\\
+    dp[1][j]&=1;直到到出现障碍，障碍后的dp[1][j]=0\\
+    dp[i][1]&=1;直到到出现障碍，障碍后的dp[i][1]=0
+\end{aligned}$
+- 有障碍的地方$dp[i][j]=0$
+```python
+def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+    dp=[[0 for _ in range(len(obstacleGrid[0])+1)] for _ in range(len(obstacleGrid)+1)]
+    for i in range(1,len(dp)):
+        if obstacleGrid[i-1][0]==0:
+            dp[i][1]=1
+        else:
+            break
+    for i in range(1,len(dp[0])):
+        if obstacleGrid[0][i-1]==0:
+            dp[1][i]=1
+        else:
+            break
+    
+    for i in range(2,len(dp)):
+        for j in range(2,len(dp[0])):
+            if obstacleGrid[i-1][j-1]==1:
+                dp[i][j]=0
+            else:
+                dp[i][j]=dp[i-1][j]+dp[i][j-1]
+    return dp[-1][-1]
+```
+
+
 ## [爬楼梯](70.py)
 - [Link](https://leetcode-cn.com/problems/climbing-stairs/)
 - 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
