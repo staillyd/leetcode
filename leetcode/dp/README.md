@@ -83,3 +83,24 @@ def climbStairs(self, n: int) -> int:
         dp[i]=dp[i-1]+dp[i-2]
     return dp[n]
 ```
+
+## [使用最小花费爬楼梯](746.py)
+- [Link](https://leetcode-cn.com/problems/min-cost-climbing-stairs/)
+- 数组的每个下标作为一个阶梯，第 i 个阶梯对应着一个非负数的体力花费值 cost[i]（下标从 0 开始）。
+- 每当你爬上一个阶梯你都要花费对应的体力值，一旦支付了相应的体力值，你就可以选择向上爬一个阶梯或者爬两个阶梯。
+- 请你找出达到楼层顶部的最低花费。在开始时，你可以选择从下标为 0 或 1 的元素作为初始阶梯。
+- $dp[i]$:到达第i层的最低花费
+- $dp[i]=min(dp[i-1]+cost[i-2],dp[i-2]+cost[i-3])$:注意下标!!
+- $dp[1]=0,dp[2]=0$
+```python
+def minCostClimbingStairs(self, cost: List[int]) -> int:
+    dp=[0 for _ in range(len(cost)+2)]
+    dp[1]=0
+    if len(cost)==1:
+        return dp[1]
+    dp[2]=0
+    for i in range(3,len(cost)+2):
+        dp[i]=min(dp[i-1]+cost[i-2],dp[i-2]+cost[i-3])
+    return dp[len(cost)+1]#n+1层才算楼梯顶
+```
+

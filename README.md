@@ -126,6 +126,7 @@
 - [最长公共子序列](leetcode/dp/1143.py)
 - [不同路径](leetcode/dp/62.py)
 - [爬楼梯](leetcode/dp/70.py)
+- [使用最小花费爬楼梯](leetcode/dp/746.py)
 
 ## [贪心](leetcode/greedy/README.md)
 - [分发饼干](leetcode/greedy/455.py)
