@@ -129,6 +129,7 @@
 ## [贪心](leetcode/greedy/README.md)
 - [分发饼干](leetcode/greedy/455.py)
 - [跳跃游戏](leetcode/greedy/55.py)
+- [跳跃游戏II](leetcode/greedy/45.py)
 
 # Ref
 > https://github.com/doocs/leetcode
