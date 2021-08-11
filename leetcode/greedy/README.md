@@ -20,3 +20,23 @@ def findContentChildren(self, g: List[int], s: List[int]) -> int:
             j-=1
     return cnt
 ```
+
+## [跳跃游戏](55.py)
+- [Link](https://leetcode-cn.com/problems/jump-game/)
+- 给定一个非负整数数组，你最初位于数组的第一个位置。
+- 数组中的每个元素代表你在该位置可以跳跃的最大长度。
+- 判断你是否能够到达最后一个位置。
+- 示例 1: 输入: [2,3,1,1,4] 输出: true 解释: 我们可以先跳 1 步，从位置 0 到达 位置 1, 然后再从位置 1 跳 3 步到达最后一个位置。
+- 示例 2: 输入: [3,2,1,0,4] 输出: false 解释: 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。
+- 贪心算法局部最优解：每次取最大跳跃步数（取最大覆盖范围），整体最优解：最后得到整体最大覆盖范围，看是否能到终点。
+```python
+def canJump(self, nums: List[int]) -> bool:
+    max_cover=0
+    i=0
+    while i<=max_cover:#当前位置能达到的最大位置
+        max_cover=max(max_cover,i+nums[i])
+        if max_cover>=len(nums)-1:#如果能到达最大位置
+            return True
+        i+=1
+    return False
+```

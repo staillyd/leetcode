@@ -127,7 +127,8 @@
 - [不同路径](leetcode/dp/62.py)
 
 ## [贪心](leetcode/greedy/README.md)
-- [分发饼干](leetcode/chain/445.py)
+- [分发饼干](leetcode/greedy/455.py)
+- [跳跃游戏](leetcode/greedy/55.py)
 
 # Ref
 > https://github.com/doocs/leetcode
