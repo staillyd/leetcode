@@ -140,3 +140,28 @@ def minCostClimbingStairs(self, cost: List[int]) -> int:
     return dp[len(cost)+1]#n+1层才算楼梯顶
 ```
 
+## 01背包
+- 有N件物品和一个最多能被重量为W 的背包。第i件物品的重量是weight[i]，得到的价值是value[i] 。每件物品只能用一次，求解将哪些物品装入背包里物品价值总和最大。
+- 暴力求解:回溯
+  - 每一件物品两个状态，取或者不取，回溯法搜索出所有情况，时间复杂度O(2^n)，这里的n表示物品数量。
+- dp思想
+  - $dp[i][j]$:从下标0开始到i的物品中，放入到容量为j的背包可以得到的最大价值
+  - ![](imgs/01背包.png)
+  - w[i]>j时，背包放不下了$dp[i][j]=dp[i-1][j]$
+  - $dp[i][j]=max(dp[i-1][j],dp[i-1][j-w[i]]+v[i])$
+    - $dp[i-1][j]$:不放
+    - $dp[i-1][j-w[i]]+v[i]$:放
+```python
+def bag_01(self, w: List[int],v:List[int],max_w:int) -> int:
+    dp=[[0 for _ in range(max_w+1)] for _ in range(len(w))]
+    for i in range(w[0],max_w+1):
+        dp[0][i]=v[0]
+    
+    for i in range(1,len(w)):
+        for j in range(max_w+1):
+            if w[i]>j:
+                dp[i][j]=dp[i-1][j]
+            else:
+                dp[i][j]=max(dp[i-1][j],dp[i-1][j-w[i]]+v[i])
+    return dp[-1][-1]
+```
