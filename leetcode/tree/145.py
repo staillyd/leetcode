@@ -1,10 +1,14 @@
 # Definition for a binary tree node.
 class TreeNode:
+
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution:
+
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         '''非递归,看成只有三个节点（根节点，左子树，右子树）的树
 
@@ -13,12 +17,12 @@ class Solution:
         '''
         if root is None:
             return []
-        s=[root]
-        ret=[]
+        s = [root]
+        ret = []
         while s:
-            node=s.pop()
+            node = s.pop()
             ret.append(node.val)
-            if node.left:#注意  先入后出
+            if node.left:  #注意  先入后出
                 s.append(node.left)
             if node.right:
                 s.append(node.right)
@@ -32,10 +36,10 @@ class Solution:
         '''
         if root is None:
             return []
-        l=self.postorderTraversal(root.left)
-        r=self.postorderTraversal(root.right)
+        l = self.postorderTraversal(root.left)
+        r = self.postorderTraversal(root.right)
 
-        res=[]
+        res = []
         res.extend(l)
         res.extend(r)
         res.append(root.val)

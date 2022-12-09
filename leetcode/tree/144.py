@@ -1,10 +1,14 @@
 # Definition for a binary tree node.
 class TreeNode:
+
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution:
+
     def preorderTraversal(self, root: TreeNode) -> List[int]:
         '''前序  [根、左、右]
         
@@ -13,17 +17,17 @@ class Solution:
         '''
         if root is None:
             return []
-        ret=[]
-        s=[root]#stack!!
+        ret = []
+        s = [root]  #stack!!
         while s:
-            node=s.pop()
+            node = s.pop()
             ret.append(node.val)
-            if node.right:#注意  先入后出
+            if node.right:  #注意  先入后出
                 s.append(node.right)
             if node.left:
                 s.append(node.left)
         return ret
-    
+
     def preorderTraversal_1(self, root: TreeNode) -> List[int]:
         '''前序  [根、左、右]
         
@@ -32,10 +36,10 @@ class Solution:
         '''
         if root is None:
             return []
-        l=self.preorderTraversal(root.left)
-        r=self.preorderTraversal(root.right)
+        l = self.preorderTraversal(root.left)
+        r = self.preorderTraversal(root.right)
 
-        ret=[]
+        ret = []
         ret.append(root.val)
         ret.extend(l)
         ret.extend(r)
