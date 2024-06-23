@@ -1,118 +1,4 @@
 # 二叉树
-## [前序遍历](144.py)
-```python
-def preorderTraversal(self, root: TreeNode) -> List[int]:
-    '''前序 
-    
-    @Note:
-        非递归  stack [根]->  [左右]
-    '''
-    if root is None:
-        return []
-    ret=[]
-    s=[root]#stack!!
-    while s:
-        node=s.pop()
-        ret.append(node.val)
-        if node.right:#注意  先入后出
-            s.append(node.right)
-        if node.left:
-            s.append(node.left)
-    return ret
-
-def preorderTraversal_1(self, root: TreeNode) -> List[int]:
-    '''前序  [根、左、右]
-    
-    @Note:
-        看成只有三个节点（根节点，左子树，右子树）的树，不需要展开，直接调用
-    '''
-    if root is None:
-        return []
-    l=self.preorderTraversal(root.left)
-    r=self.preorderTraversal(root.right)
-
-    ret=[]
-    ret.append(root.val)
-    ret.extend(l)
-    ret.extend(r)
-
-    return ret
-```
-
-## [后序遍历](145.py)
-- [Link](https://leetcode-cn.com/problems/binary-tree-postorder-traversal/)
-```python
-def postorderTraversal(self, root: TreeNode) -> List[int]:
-    '''非递归,看成只有三个节点（根节点，左子树，右子树）的树
-
-    @Note:
-        根右左->左右根    stack [根]->  [右左]   反序
-    '''
-    if root is None:
-        return []
-    s=[root]
-    ret=[]
-    while s:
-        node=s.pop()
-        ret.append(node.val)
-        if node.left:#注意  先入后出
-            s.append(node.left)
-        if node.right:
-            s.append(node.right)
-    return ret[::-1]
-
-def postorderTraversal_1(self, root: TreeNode) -> List[int]:
-    '''后序遍历
-    
-    @Note:
-        递归
-    '''
-    if root is None:
-        return []
-    l=self.postorderTraversal(root.left)
-    r=self.postorderTraversal(root.right)
-
-    res=[]
-    res.extend(l)
-    res.extend(r)
-    res.append(root.val)
-    return res
-```
-
-## [中序遍历](94.py)
-- [Link](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
-```python
-def inorderTraversal(self, root: TreeNode) -> List[int]:
-    '''中序遍历,左根右   []   [左根] -> [右]'''
-    if root is None:
-        return []
-    
-    ret=[]
-    s=[]
-    while root or s:#注意和前序后序不同!!!
-        if root:
-            s.append(root)
-            root=root.left
-        else:
-            root=s.pop()
-            ret.append(root.val)
-            root=root.right
-    return ret
-
-def inorderTraversal_1(self, root: TreeNode) -> List[int]:
-    if root is None:
-        return []
-    
-    l=self.inorderTraversal(root.left)
-    r=self.inorderTraversal(root.right)
-
-    ret=[]
-    ret.extend(l)
-    ret.append(root.val)
-    ret.extend(r)
-    return ret
-```
-
 ![](imgs/树的遍历结果.png)
 
 1. **前序、中序、后序非递归:树从根开始，栈存到根，然后开始弹出，然后再存剩余的。**
@@ -124,6 +10,199 @@ def inorderTraversal_1(self, root: TreeNode) -> List[int]:
 7. **所有路径:dfs(递归)+路径记录**
 8. **递归看成:左子树也这么做,右子树也这么做,在做完之后考虑root、左子树结果、右子树结果进行逻辑联系**
 9. **一些题目可以看成中序遍历的变种,进行中序遍历，记录头节点、上一节点指针，然后进行操作**
+
+## [前序遍历](144.py)
+- [Link](https://leetcode.cn/problems/binary-tree-preorder-traversal/)
+- [参考](https://blog.csdn.net/zy_dreamer/article/details/131040301)
+```c++
+void preorder_traversal(TreeNode* node, std::vector<int>* vec) {
+  if (!node) {
+    return;
+  }
+
+  vec->emplace_back(node->val);
+  preorder_traversal(node->left, vec);
+  preorder_traversal(node->right, vec);
+}
+
+std::vector<int> preorder_traversal_1(TreeNode* root) {  // 前序  [根、左、右]
+  std::vector<int> vec;
+
+  preorder_traversal(root, &vec);  // 看成只有三个节点（根节点，左子树，右子树）的树，不需要展开，直接调用
+
+  return vec;
+}
+
+std::vector<int> preorder_traversal(TreeNode* root) {  // 前序  [根、左、右]
+  std::vector<int> vec;
+  if (!root) {
+    return vec;
+  }
+
+  std::stack<TreeNode*> s;
+  s.emplace(root);
+
+  while (!s.empty()) {  // 非递归 stack 栈顶 [根 - 左右]
+    TreeNode* node = s.top();
+    vec.emplace_back(node->val);
+    s.pop();
+
+    if (node->right) {
+      s.push(node->right);
+    }
+    if (node->left) {
+      s.push(node->left);
+    }
+  }
+
+  return vec;
+}
+```
+
+## [中序遍历](94.py)
+- [Link](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
+```c++
+void inorderTraversal(TreeNode* node, std::vector<int>* vec) {
+  if (!node) {
+    return;
+  }
+
+  inorderTraversal(node->left, vec);
+  vec->emplace_back(node->val);
+  inorderTraversal(node->right, vec);
+}
+
+std::vector<int> inorderTraversal_1(TreeNode* root) {  // 中序  [左、根、右]
+  std::vector<int> vec;
+
+  inorderTraversal(root, &vec);  // 看成只有三个节点（根节点，左子树，右子树）的树，不需要展开，直接调用
+
+  return vec;
+}
+
+std::vector<int> inorderTraversal(TreeNode* root) {  // 后序  [左、根、右]
+  std::vector<int> vec;
+  if (!root) {
+    return vec;
+  }
+
+  std::stack<TreeNode*> s;
+  while (root || !s.empty()) {  // 非递归 stack 栈顶 [左根右], 在左子树访问之前, 当前节点不能提前出栈
+    while (root) {              // 找到最左侧节点, 过程中push节点
+      s.emplace(root);
+      root = root->left;
+    }
+
+    TreeNode* node = s.top();  // 左子树访问完, pop
+    s.pop();
+    vec.emplace_back(node->val);
+    root = node->right;  // 往右遍历
+  }
+
+  return vec;
+}
+```
+
+## [后序遍历](145.py)
+- [Link](https://leetcode-cn.com/problems/binary-tree-postorder-traversal/)
+```c++
+void postorderTraversal(TreeNode* node, std::vector<int>* vec) {
+  if (!node) {
+    return;
+  }
+
+  postorderTraversal(node->left, vec);
+  postorderTraversal(node->right, vec);
+  vec->emplace_back(node->val);
+}
+
+std::vector<int> postorderTraversal_1(TreeNode* root) {  // 后序  [左、右、根]
+  std::vector<int> vec;
+
+  postorderTraversal(root, &vec);  // 看成只有三个节点（根节点，左子树，右子树）的树，不需要展开，直接调用
+
+  return vec;
+}
+
+std::vector<int> postorderTraversal_2(TreeNode* root) {  // 后序  栈顶 [左-右、根]
+  std::vector<int> vec;
+  if (!root) {
+    return vec;
+  }
+
+  std::stack<TreeNode*> s;
+  s.push(root);
+
+  while (!s.empty()) {  // 栈顶 [根-右、左] 前序便历, 再reverse
+    TreeNode* node = s.top();
+    s.pop();
+    vec.emplace_back(node->val);
+
+    if (node->left) {
+      s.emplace(node->left);
+    }
+    if (node->right) {
+      s.emplace(node->right);
+    }
+  }
+
+  std::reverse(vec.begin(), vec.end());
+
+  return vec;
+}
+
+std::vector<int> postorderTraversal(TreeNode* root) {  // 后序  栈顶 [左-右、根]
+  std::vector<int> vec;
+  if (!root) {
+    return vec;
+  }
+
+  std::stack<TreeNode*> s;
+  TreeNode* last_pop = nullptr;
+  while (root || !s.empty()) {  // 非递归 stack 栈顶 [左右根], 在左子树、右子树访问完之前, 当前节点不能提前出栈
+    while (root) {      // 找到最左侧节点, 过程中push节点
+      s.emplace(root);
+      root = root->left;
+    }
+
+    TreeNode* node = s.top();
+    if (node->right && last_pop != node->right) {  // 右子树访问完之前, last_pop: 保证右子树没访问过, 不然会重复遍历
+      root = node->right;
+    } else {  // 当前节点
+      s.pop();
+      vec.emplace_back(node->val);
+      last_pop = node;
+      root = nullptr;  // 注意, 当前节点pop时, 不再走左右节点, 也是为了不重复遍历
+    }
+  }
+
+  return vec;
+}
+```
+
+## [层序遍历](102.py)
+- [Link](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
+```python
+def levelOrder(self, root: TreeNode) -> List[List[int]]:
+    '''队列'''
+    if root is None:
+        return []
+    q=[root]
+    ret=[]
+    while q:
+        size=len(q)#当前层的个数!!!
+        t=[]
+        for _ in range(size): # 当前层的个数, 遍历当前层
+            node=q.pop(0)
+            t.append(node.val)
+
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+        ret.append(t)
+    return ret
+```
 
 ## [对称二叉树](101.py)
 - [Link](https://leetcode-cn.com/problems/symmetric-tree/)
@@ -200,30 +279,6 @@ def invertTree(self, root: TreeNode) -> TreeNode:
     self.invertTree(root.left)
     self.invertTree(root.right)
     return root
-```
-
-## [层序遍历](102.py)
-- [Link](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
-```python
-def levelOrder(self, root: TreeNode) -> List[List[int]]:
-    '''队列'''
-    if root is None:
-        return []
-    q=[root]
-    ret=[]
-    while q:
-        size=len(q)#当前层的个数!!!
-        t=[]
-        for _ in range(size):
-            node=q.pop(0)
-            t.append(node.val)
-
-            if node.left:
-                q.append(node.left)
-            if node.right:
-                q.append(node.right)
-        ret.append(t)
-    return ret
 ```
 
 ## [层序遍历II](107.py)

@@ -507,6 +507,8 @@ def isPalindrome(self, head: ListNode) -> bool:
 ## [相交链表](160.py)
 - [Link](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)
 - 给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。
+- 方式一、遍历第一个得到map、set, 再遍历第二个判断是否在第一个存在
+- 方式二、环会相交, 定义两个指针形成环
 ```python
 def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
     '''判断链表是否相交
@@ -559,6 +561,8 @@ def oddEvenList(self, head: ListNode) -> ListNode:
 ## [环形链表](141.py)
 - [Link](https://leetcode-cn.com/problems/linked-list-cycle/)
 - 给定一个链表，判断链表中是否有环。
+- 方式一、遍历得到map、set, 判断之后的元素是否在之前出现过
+- 方式二、环会相交, 定义快慢指针(这里不是找中间节点, 不用fast=fast->next)
 ```python
 def hasCycle(self, head: ListNode) -> bool:
     '''快慢指针'''
