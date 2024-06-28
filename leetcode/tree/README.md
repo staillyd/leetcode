@@ -340,18 +340,16 @@ def maxDepth(self, root: TreeNode) -> int:
     return max(self.maxDepth(root.left),self.maxDepth(root.right))+1
 ```
 
-**画树，一般考虑1～3层递归即可**
-
 ## [树的最小深度](111.py)
 ```python
-def minDepth(self, root: TreeNode) -> int:
+def minDepth(self, root: TreeNode) -> int: #注意跟最大深度的区别
     if root is None:
         return 0
-    if root.left is not None and root.right is None:#较高一层的值,注意和最大深度的区别,画1～3层的树
+    if root.left is not None and root.right is None:# 只有都左右节点都没有时才算叶子节点
         return 1+self.minDepth(root.left)
     if root.right is not None and root.left is None:
         return 1+self.minDepth(root.right)
-    return 1+min(self.minDepth(root.left),self.minDepth(root.right))
+    return 1+min(self.minDepth(root.left),self.minDepth(root.right)) #左右都有、左右都没有
 ```
 
 ## [**二叉树的所有路径**](257.py)
