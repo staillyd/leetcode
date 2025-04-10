@@ -1,0 +1,21 @@
+project(chain)
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+add_definitions("-Wall -g")
+
+include_directories(${PROJECT_SOURCE_DIR})
+
+add_executable(2 2.cpp)
+add_executable(83 83.cpp)
+add_executable(82 82.cpp)
+add_executable(203 203.cpp)
+add_executable(2_2 2_2.cpp)
+add_executable(24 24.cpp)
+add_executable(23 23.cpp)
+add_executable(147 147.cpp)
+add_executable(148 148.cpp)
+add_executable(206 206.cpp)
+add_executable(92 92.cpp)
+add_executable(143 143.cpp)
+add_executable(61 61.cpp)
+add_executable(234 234.cpp)
