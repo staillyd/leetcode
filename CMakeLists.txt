@@ -1,0 +1,15 @@
+project(leetcode)
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+add_definitions("-Wall -g")
+
+add_subdirectory(basic/sort)
+add_subdirectory(basic/search)
+add_subdirectory(leetcode/array)
+add_subdirectory(leetcode/string)
+add_subdirectory(leetcode/chain)
+add_subdirectory(leetcode/tree)
+add_subdirectory(leetcode/queue_stack)
+add_subdirectory(leetcode/backtrack)
+add_subdirectory(leetcode/dp)
+add_subdirectory(ml)
